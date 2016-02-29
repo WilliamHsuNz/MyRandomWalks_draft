@@ -1,0 +1,152 @@
+<beast version='2.0'
+       namespace='beast.evolution.alignment:beast.core:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood'>
+<!--  4/1/2016 -->
+<!--
+    <data id="alignment" dataType="nucleotide">
+        <sequence taxon="human">?</sequence>
+        <sequence taxon="chimp">?</sequence>
+        <sequence taxon="bonobo">?</sequence>
+        <sequence taxon="gorilla">?</sequence>
+        <sequence taxon="orangutan">?</sequence>
+        <sequence taxon="siamang">?</sequence>
+    </data>
+
+    <tree id='tree' spec='beast.util.TreeParser' newick='((((human:0.02096625515232275,(chimp:0.014857143159686462,bonobo:0.014857143159686462):0.0061091119926362895):0.012862878672687175,gorilla:0.033829133825009926):0.029471223948245952,orangutan:0.06330035777325588):0.0031773962188650223,siamang:0.0664777539921209)' taxa='@alignment'/>
+-->
+
+    <data id="alignment" dataType="nucleotide">
+        <sequence taxon="t0">?</sequence>
+		<sequence taxon="t1">?</sequence>
+		<sequence taxon="t2">?</sequence>
+		<sequence taxon="t3">?</sequence>
+		<sequence taxon="t4">?</sequence>
+		<sequence taxon="t5">?</sequence>
+		<sequence taxon="t6">?</sequence>
+		<sequence taxon="t7">?</sequence>
+		<sequence taxon="t8">?</sequence>
+		<sequence taxon="t9">?</sequence>
+		<sequence taxon="t10">?</sequence>
+		<sequence taxon="t11">?</sequence>
+		<sequence taxon="t12">?</sequence>
+		<sequence taxon="t13">?</sequence>
+		<sequence taxon="t14">?</sequence>
+		<sequence taxon="t15">?</sequence>
+		<sequence taxon="t16">?</sequence>
+		<sequence taxon="t17">?</sequence>
+		<sequence taxon="t18">?</sequence>
+		<sequence taxon="t19">?</sequence>
+		<sequence taxon="t20">?</sequence>
+		<sequence taxon="t21">?</sequence>
+		<sequence taxon="t22">?</sequence>
+		<sequence taxon="t23">?</sequence>
+		<sequence taxon="t24">?</sequence>
+		<sequence taxon="t25">?</sequence>
+		<sequence taxon="t26">?</sequence>
+		<sequence taxon="t27">?</sequence>
+		<sequence taxon="t28">?</sequence>
+		<sequence taxon="t29">?</sequence>
+		<sequence taxon="t30">?</sequence>
+		<sequence taxon="t31">?</sequence>
+		<sequence taxon="t32">?</sequence>
+		<sequence taxon="t33">?</sequence>
+		<sequence taxon="t34">?</sequence>
+		<sequence taxon="t35">?</sequence>
+		<sequence taxon="t36">?</sequence>
+		<sequence taxon="t37">?</sequence>
+		<sequence taxon="t38">?</sequence>
+		<sequence taxon="t39">?</sequence>
+		<sequence taxon="t40">?</sequence>
+		<sequence taxon="t41">?</sequence>
+		<sequence taxon="t42">?</sequence>
+		<sequence taxon="t43">?</sequence>
+		<sequence taxon="t44">?</sequence>
+		<sequence taxon="t45">?</sequence>
+		<sequence taxon="t46">?</sequence>
+		<sequence taxon="t47">?</sequence>
+		<sequence taxon="t48">?</sequence>
+		<sequence taxon="t49">?</sequence>
+		<sequence taxon="t50">?</sequence>
+		<sequence taxon="t51">?</sequence>
+		<sequence taxon="t52">?</sequence>
+		<sequence taxon="t53">?</sequence>
+		<sequence taxon="t54">?</sequence>
+		<sequence taxon="t55">?</sequence>
+		<sequence taxon="t56">?</sequence>
+		<sequence taxon="t57">?</sequence>
+		<sequence taxon="t58">?</sequence>
+		<sequence taxon="t59">?</sequence>
+		<sequence taxon="t60">?</sequence>
+		<sequence taxon="t61">?</sequence>
+		<sequence taxon="t62">?</sequence>
+		<sequence taxon="t63">?</sequence>
+		<sequence taxon="t64">?</sequence>
+		<sequence taxon="t65">?</sequence>
+		<sequence taxon="t66">?</sequence>
+		<sequence taxon="t67">?</sequence>
+		<sequence taxon="t68">?</sequence>
+		<sequence taxon="t69">?</sequence>
+		<sequence taxon="t70">?</sequence>
+		<sequence taxon="t71">?</sequence>
+		<sequence taxon="t72">?</sequence>
+		<sequence taxon="t73">?</sequence>
+		<sequence taxon="t74">?</sequence>
+		<sequence taxon="t75">?</sequence>
+		<sequence taxon="t76">?</sequence>
+		<sequence taxon="t77">?</sequence>
+		<sequence taxon="t78">?</sequence>
+		<sequence taxon="t79">?</sequence>
+		<sequence taxon="t80">?</sequence>
+		<sequence taxon="t81">?</sequence>
+		<sequence taxon="t82">?</sequence>
+		<sequence taxon="t83">?</sequence>
+		<sequence taxon="t84">?</sequence>
+		<sequence taxon="t85">?</sequence>
+		<sequence taxon="t86">?</sequence>
+		<sequence taxon="t87">?</sequence>
+		<sequence taxon="t88">?</sequence>
+		<sequence taxon="t89">?</sequence>
+		<sequence taxon="t90">?</sequence>
+		<sequence taxon="t91">?</sequence>
+		<sequence taxon="t92">?</sequence>
+		<sequence taxon="t93">?</sequence>
+		<sequence taxon="t94">?</sequence>
+		<sequence taxon="t95">?</sequence>
+		<sequence taxon="t96">?</sequence>
+		<sequence taxon="t97">?</sequence>
+		<sequence taxon="t98">?</sequence>
+		<sequence taxon="t99">?</sequence>
+    </data>
+
+
+	<state>
+          <stateNode spec='beast.evolution.tree.Tree' id='tree'/>
+      </state>
+
+<!-- initialise random tree using alignment--> 
+<init estimate="false" id="RandomTree" initial="@tree" spec="beast.evolution.tree.RandomTree" taxa="@alignment">
+    <populationModel id="ConstantPopulation" spec="ConstantPopulation">
+        <parameter id="randomPopSize" name="popSize">100.0</parameter>
+<!--popsize set to the number of taxons-->
+    </populationModel>
+</init>
+
+    <run spec="beast.app.seqgen.SeqgenRWGammaLogNormal" id="seqgen" data='@alignment' tree='@RandomTree' sequencelength='3000' rwType = 'Gamma' v1_variance = '1' v2_variance = '0.1' correlationCoefficient = '0.0'  shape = '0.5' scale = '0.5' outputFileName = 'seqgenRWGamma.xml'> 
+	    <siteModel spec='SiteModel' id="siteModel" gammaCategoryCount='1'>
+<!--
+			<substModel spec='JukesCantor' id='JC69'/>
+-->
+			<substModel spec='HKY' id='hky'>
+			    <parameter name='kappa' id="hky.kappa" value="5.0" lower="0.0"/>
+				<frequencies id='freqs' spec='Frequencies'>
+				    <data idref='alignment'/>
+				</frequencies>
+			</substModel>
+
+
+	    </siteModel>
+
+        <branchRateModel id="StrictClock" spec="beast.evolution.branchratemodel.StrictClockModel">
+            <parameter dimension="1" estimate="false" id="clockRate" minordimension="1" name="clock.rate" value="1.0"/>
+        </branchRateModel>
+	</run>
+</beast>
