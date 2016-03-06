@@ -1,6 +1,6 @@
 <beast version='2.0'
        namespace='beast.evolution.alignment:beast.core:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood'>
-<!--  2/3/2016 -->
+<!--  4/3/2016 -->
 <!--
     <data id="alignment" dataType="nucleotide">
         <sequence taxon="human">?</sequence>
@@ -130,7 +130,7 @@
     </populationModel>
 </init>
 
-    <run spec="beast.app.seqgen.SeqgenCRW" id="seqgen" data='@alignment' tree='@RandomTree' sequencelength='3000' lambdaTurningEvent = '1.0' lambdaStepLength ='1.0' k = '8.0' outputFileName = 'seqgenCRW.xml'> 
+    <run spec="beast.app.seqgen.SeqgenBRW" id="seqgen" data='@alignment' tree='@RandomTree' sequencelength='3000' lambdaDirectionChangeEvent = '1.0' lambdaStepLength ='1.0'  clockwiseProb = '0.3' counterClockwiseProb = '0.6' outputFileName = 'seqgenSRW.xml'> 
 	    <siteModel spec='SiteModel' id="siteModel" gammaCategoryCount='1'>
 <!--
 			<substModel spec='JukesCantor' id='JC69'/>

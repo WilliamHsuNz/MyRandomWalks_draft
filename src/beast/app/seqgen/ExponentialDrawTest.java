@@ -5,7 +5,7 @@ import beast.util.Randomizer;
 public class ExponentialDrawTest {
 	public void example(){
 		double lTimeElapsed = 20;
-		double m_lambda = 1.0;
+		double m_lambda = 2.0;
 		int num_direction_change = 0;
 		int count = 0;
 		double tSum = 0;
