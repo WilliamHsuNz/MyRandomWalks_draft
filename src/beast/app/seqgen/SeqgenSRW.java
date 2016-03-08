@@ -60,10 +60,11 @@ public class SeqgenSRW extends beast.core.Runnable {
 			"A model describing the rates on the branches of the beast.tree.");
 	public Input<Integer> m_sequenceLengthInput = new Input<Integer>("sequencelength", "nr of samples to generate (default 1000).", 1000);
 	public Input<String> m_outputFileNameInput = new Input<String>("outputFileName","If provided, simulated alignment is written to this file rather " + "than to standard out.");
-
+	public Input<Double> m_timeStepInput = new Input<Double>("timeStep", "time step between moves(default 0.01).", 0.01);
+	public Input<Double> m_spatialStepInput = new Input<Double>("spatialStep", "spatial step between moves(default 0.01).", 0.01);
 	//public Input<String> m_rwTypeInput = new Input<String>("rwType", "Random Walk tyep");
-	public Input<Double> m_lambdaDirectionChangeEventInput = new Input<Double>("lambdaDirectionChangeEvent", "parameter for exponential distribution (default 1.0).", 1.0);
-	public Input<Double> m_lambdaStepLengthInput = new Input<Double>("lambdaStepLength", "parameter for exponential distribution (default 1.0).", 1.0);
+	//public Input<Double> m_lambdaDirectionChangeEventInput = new Input<Double>("lambdaDirectionChangeEvent", "parameter for exponential distribution (default 1.0).", 1.0);
+	//public Input<Double> m_lambdaStepLengthInput = new Input<Double>("lambdaStepLength", "parameter for exponential distribution (default 1.0).", 1.0);
 	//public Input<Double> m_kInput = new Input<Double>("k", "parameter for Von Mises Distribution (default 1.0).", 1.0);
 	/**
 	 * nr of samples to generate *
@@ -108,8 +109,10 @@ public class SeqgenSRW extends beast.core.Runnable {
 	/**
 	 *  lambda for exponential distribution
 	 */
-	double m_lambdaDirectionChange;
-	double m_lambdaStepLength;
+	//double m_lambdaDirectionChange;
+	//double m_lambdaStepLength;
+	double timeStep;
+	double spatialStep;
 	double direction;
 
 	public double [][] taxonLocations;
@@ -125,12 +128,8 @@ public class SeqgenSRW extends beast.core.Runnable {
 		m_categoryCount = m_siteModel.getCategoryCount();
 		m_probabilities = new double[m_categoryCount][m_stateCount * m_stateCount];
 		m_outputFileName = m_outputFileNameInput.get();
-		//m_rwType = m_rwTypeInput.get();
-		m_lambdaDirectionChange = m_lambdaDirectionChangeEventInput.get();
-		m_lambdaStepLength = m_lambdaStepLengthInput.get();
-		//m_k = m_kInput.get();
-		//MersenneTwisterFast mtf = new MersenneTwisterFast();
-		//vm = new VonMises(m_k, mtf);
+		timeStep = m_timeStepInput.get();
+		spatialStep = m_spatialStepInput.get();
 	}
 
 	@Override	
@@ -219,19 +218,8 @@ public class SeqgenSRW extends beast.core.Runnable {
 		double rTimeElapsed = rootHeight - rightChild.getHeight();
 
 		//find number of steps and changes of directions on the left branch
-		int numDirectionChange = 0;
 		int numSteps = 0;
-		double tSum = 0;
-		while(tSum < lTimeElapsed){
-			tSum += Randomizer.nextExponential(m_lambdaDirectionChange); 
-			numDirectionChange += 1; 
-		}
-		numDirectionChange -=1;
-		numSteps = numDirectionChange;
-		double[]l_steps = new double [numSteps];
-		for(int i = 0; i < numSteps; i++){
-			l_steps[i] = Randomizer.nextExponential(m_lambdaStepLength);
-		}
+		numSteps = (int)(lTimeElapsed/timeStep);
 		//find location of left child
 		double step;
 		double lat;
@@ -239,39 +227,26 @@ public class SeqgenSRW extends beast.core.Runnable {
 		//set left child location initially to that of parent
 		taxonLocations[leftChild.getNr()][0] = taxonLocations[root.getNr()][0];
 		taxonLocations[leftChild.getNr()][1] = taxonLocations[root.getNr()][1];
-		for (int i = 0; i < numDirectionChange; i++){
+		for (int i = 0; i < numSteps; i++){
 			direction = Randomizer.nextDouble() *Math.PI;
 			direction = (Randomizer.nextBoolean() == true)? direction : direction* -1;//clockwise or counter-clockwise
-			step = l_steps[i];
-			lat = Math.sin(direction)*step;
-			lon = Math.cos(direction)*step;
+			//step = l_steps[i];
+			lat = Math.sin(direction)*spatialStep;
+			lon = Math.cos(direction)*spatialStep;
 			taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
 			taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon;
 		}
 		//find number of steps and changes of directions on the right branch
-		numDirectionChange = 0;
-		numSteps = 0;
-		tSum = 0.0;
-		while(tSum < rTimeElapsed){
-			tSum += Randomizer.nextExponential(m_lambdaDirectionChange); 
-			numDirectionChange += 1;
-		}
-		numDirectionChange -=1;
-		numSteps = numDirectionChange;
-		double[]r_steps = new double [numSteps];
-		for(int i = 0; i < numSteps; i++){
-			r_steps[i] = Randomizer.nextExponential(m_lambdaStepLength);
-		}
+		numSteps = (int)(rTimeElapsed/timeStep);
 		//find location of right child
 		//set right child location initially to that of parent
 		taxonLocations[rightChild.getNr()][0] = taxonLocations[root.getNr()][0];
 		taxonLocations[rightChild.getNr()][1] = taxonLocations[root.getNr()][1];
-		for (int i = 0; i < numDirectionChange; i++){
+		for (int i = 0; i < numSteps; i++){
 			direction = Randomizer.nextDouble() *Math.PI;
 			direction = (Randomizer.nextBoolean() == true)? direction : direction* -1;//clockwise or counterclockwise
-			step = r_steps[i];
-			lat = Math.sin(direction)*step;
-			lon = Math.cos(direction)*step;
+			lat = Math.sin(direction)*spatialStep;
+			lon = Math.cos(direction)*spatialStep;
 			taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
 			taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon;
 		}		

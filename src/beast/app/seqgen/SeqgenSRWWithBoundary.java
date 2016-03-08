@@ -1,7 +1,7 @@
 package beast.app.seqgen;
 
-import ec.util.MersenneTwisterFast;
-import sim.util.distribution.VonMises;
+//import ec.util.MersenneTwisterFast;
+//import sim.util.distribution.VonMises;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -65,8 +65,8 @@ public class SeqgenSRWWithBoundary extends beast.core.Runnable {
 	//public Input<String> m_rwTypeInput = new Input<String>("rwType", "Random Walk tyep");
 	public Input<Double> m_lambdaDirectionChangeEventInput = new Input<Double>("lambdaDirectionChangeEvent", "parameter for exponential distribution (default 1.0).", 1.0);
 	public Input<Double> m_lambdaStepLengthInput = new Input<Double>("lambdaStepLength", "parameter for exponential distribution (default 1.0).", 1.0);
-	public Input<Double> m_latBoundaryInput = new Input<Double>("latBoundary", "Latitude boundary");
-	public Input<Double> m_lonBoundaryInput = new Input<Double>("lonBoundary", "Longitude boundary");
+	public Input<Double> m_latBoundaryInput = new Input<Double>("latBoundary", "Latitude boundary (default 1000000000).", 1000000000.0);
+	public Input<Double> m_lonBoundaryInput = new Input<Double>("lonBoundary", "Longitude boundary(default 1000000000.", 1000000000.0);
 	/**
 	 * nr of samples to generate *
 	 */

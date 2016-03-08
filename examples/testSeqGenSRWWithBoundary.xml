@@ -130,7 +130,7 @@
     </populationModel>
 </init>
 
-    <run spec="beast.app.seqgen.SeqgenSRWWithBoundary" id="seqgen" data='@alignment' tree='@RandomTree' sequencelength='3000' lambdaDirectionChangeEvent = '1.0' lambdaStepLength ='3.0'  latBoundary = '-5.0' lonBoundary = '5.0' outputFileName = 'seqgenSRWWithBoundary.xml'> 
+    <run spec="beast.app.seqgen.SeqgenSRWWithBoundary" id="seqgen" data='@alignment' tree='@RandomTree' sequencelength='3000' lambdaDirectionChangeEvent = '1.0' lambdaStepLength ='5.0'  latBoundary = '5.0' lonBoundary = '3.0' outputFileName = 'seqgenSRWWithBoundary.xml'> 
 	    <siteModel spec='SiteModel' id="siteModel" gammaCategoryCount='1'>
 <!--
 			<substModel spec='JukesCantor' id='JC69'/>
