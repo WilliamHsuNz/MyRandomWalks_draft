@@ -138,6 +138,7 @@ public class SeqgenRRWGamma extends beast.core.Runnable {
     @Override	
     public void run() throws Exception {
     	System.out.println(m_treeInput.get());//print newick String
+    	//TraitSetMap 
     	makeLocation(m_tree);
     	System.out.println(m_tree);
     	
@@ -291,6 +292,7 @@ public class SeqgenRRWGamma extends beast.core.Runnable {
         double x = location[0];
         double y = location[1];
         sTaxon = sTaxon + "_" + x + "_" + y;
+
  
         return new Sequence(sTaxon, sSeq.toString());
     } // intArray2Sequence

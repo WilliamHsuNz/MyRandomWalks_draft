@@ -61,7 +61,7 @@ public class SeqgenSRW extends beast.core.Runnable {
 	public Input<Integer> m_sequenceLengthInput = new Input<Integer>("sequencelength", "nr of samples to generate (default 1000).", 1000);
 	public Input<String> m_outputFileNameInput = new Input<String>("outputFileName","If provided, simulated alignment is written to this file rather " + "than to standard out.");
 	public Input<Double> m_timeStepInput = new Input<Double>("timeStep", "time step between moves(default 0.01).", 0.01);
-	public Input<Double> m_spatialStepInput = new Input<Double>("spatialStep", "spatial step between moves(default 0.01).", 0.01);
+	public Input<Double> m_spatialStepInput = new Input<Double>("spatialStep", "spatial step of move(default 0.01).", 0.01);
 	//public Input<String> m_rwTypeInput = new Input<String>("rwType", "Random Walk tyep");
 	//public Input<Double> m_lambdaDirectionChangeEventInput = new Input<Double>("lambdaDirectionChangeEvent", "parameter for exponential distribution (default 1.0).", 1.0);
 	//public Input<Double> m_lambdaStepLengthInput = new Input<Double>("lambdaStepLength", "parameter for exponential distribution (default 1.0).", 1.0);

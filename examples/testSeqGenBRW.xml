@@ -130,7 +130,7 @@
     </populationModel>
 </init>
 
-    <run spec="beast.app.seqgen.SeqgenBRW" id="seqgen" data='@alignment' tree='@RandomTree' sequencelength='3000' lambdaDirectionChangeEvent = '1.0' lambdaStepLength ='1.0'  clockwiseProb = '0.5' counterClockwiseProb = '0.3' outputFileName = 'seqgenSRW.xml'> 
+    <run spec="beast.app.seqgen.SeqgenBRW" id="seqgen" data='@alignment' tree='@RandomTree' sequencelength='3000' timeStep = '0.001' spatialStep = '0.001'  clockwiseProb = '0.4' counterClockwiseProb = '0.4' outputFileName = 'seqgenSRW.xml'> 
 	    <siteModel spec='SiteModel' id="siteModel" gammaCategoryCount='1'>
 <!--
 			<substModel spec='JukesCantor' id='JC69'/>

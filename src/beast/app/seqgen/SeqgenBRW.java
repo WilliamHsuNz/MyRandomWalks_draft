@@ -61,10 +61,13 @@ public class SeqgenBRW extends beast.core.Runnable {
 			"A model describing the rates on the branches of the beast.tree.");
 	public Input<Integer> m_sequenceLengthInput = new Input<Integer>("sequencelength", "nr of samples to generate (default 1000).", 1000);
 	public Input<String> m_outputFileNameInput = new Input<String>("outputFileName","If provided, simulated alignment is written to this file rather " + "than to standard out.");
-	public Input<Double> m_lambdaDirectionChangeEventInput = new Input<Double>("lambdaDirectionChangeEvent", "parameter for exponential distribution (default 1.0).", 1.0);
-	public Input<Double> m_lambdaStepLengthInput = new Input<Double>("lambdaStepLength", "parameter for exponential distribution (default 1.0).", 1.0);
+	//public Input<Double> m_lambdaDirectionChangeEventInput = new Input<Double>("lambdaDirectionChangeEvent", "parameter for exponential distribution (default 1.0).", 1.0);
+	//public Input<Double> m_lambdaStepLengthInput = new Input<Double>("lambdaStepLength", "parameter for exponential distribution (default 1.0).", 1.0);
+	public Input<Double> m_timeStepInput = new Input<Double>("timeStep", "time step between moves(default 0.001)", 0.001);
+	public Input<Double> m_spatialStepInput = new Input<Double>("spatialStep", "spatial step of each move(default 0.01)", 0.01);
 	public Input<Double> m_clockwiseProbInput = new Input<Double>("clockwiseProb", "probability of turning clock wise(default 0.5)", 0.4);
 	public Input<Double> m_counterClockwiseProbInput = new Input<Double>("counterClockwiseProb", "probability of turning counter-clockwise(default 0.5)", 0.5);
+	
 	
 	/**
 	 * nr of samples to generate *
@@ -109,10 +112,11 @@ public class SeqgenBRW extends beast.core.Runnable {
 	/**
 	 *  lambda for exponential distribution
 	 */
-	double m_lambdaDirectionChange;
-	double m_lambdaStepLength;
+
 	double m_clockwiseProb;
 	double m_counterClockwiseProb;
+	double timeStep;
+	double spatialStep;
 	double direction;
 	
 	double clockwiseCouterClockwiseOrSameDirection;
@@ -130,10 +134,10 @@ public class SeqgenBRW extends beast.core.Runnable {
 		m_categoryCount = m_siteModel.getCategoryCount();
 		m_probabilities = new double[m_categoryCount][m_stateCount * m_stateCount];
 		m_outputFileName = m_outputFileNameInput.get();
-		m_lambdaDirectionChange = m_lambdaDirectionChangeEventInput.get();
-		m_lambdaStepLength = m_lambdaStepLengthInput.get();
 		m_clockwiseProb = m_clockwiseProbInput.get();
 		m_counterClockwiseProb = m_counterClockwiseProbInput.get();
+		timeStep = m_timeStepInput.get();
+		spatialStep = m_spatialStepInput.get();
 	}
 
 	@Override	
@@ -222,19 +226,8 @@ public class SeqgenBRW extends beast.core.Runnable {
 		double rTimeElapsed = rootHeight - rightChild.getHeight();
 
 		//find number of steps and changes of directions on the left branch
-		int numDirectionChange = 0;
-		int numSteps = 0;
-		double tSum = 0;
-		while(tSum < lTimeElapsed){
-			tSum += Randomizer.nextExponential(m_lambdaDirectionChange); 
-			numDirectionChange += 1; 
-		}
-		numDirectionChange -=1;
-		numSteps = numDirectionChange;
-		double[]l_steps = new double [numSteps];
-		for(int i = 0; i < numSteps; i++){
-			l_steps[i] = Randomizer.nextExponential(m_lambdaStepLength);
-		}
+		int numSteps = (int)(lTimeElapsed/timeStep);
+		
 		//find location of left child
 		double step;
 		double lat;
@@ -244,48 +237,34 @@ public class SeqgenBRW extends beast.core.Runnable {
 		//set left child location initially to that of parent
 		taxonLocations[leftChild.getNr()][0] = taxonLocations[root.getNr()][0];
 		taxonLocations[leftChild.getNr()][1] = taxonLocations[root.getNr()][1];
-		for (int i = 0; i < numDirectionChange; i++){
+		for (int i = 0; i < numSteps; i++){
 			clockwiseCouterClockwiseOrSameDirection = Randomizer.nextDouble();
 			cur_direction = Randomizer.nextDouble() *Math.PI;
 			if (clockwiseCouterClockwiseOrSameDirection <= m_clockwiseProb)//direction is clockwise
 				l_direction = cur_direction *-1;
 			else if (clockwiseCouterClockwiseOrSameDirection <= m_clockwiseProb + m_counterClockwiseProb)//direction is counter clockwise
 				l_direction = cur_direction;
-			step = l_steps[i];
-			lat = Math.sin(l_direction)*step;
-			lon = Math.cos(l_direction)*step;
+			lat = Math.sin(l_direction)*spatialStep;
+			lon = Math.cos(l_direction)*spatialStep;
 			taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
 			taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon;
 		}
 		//find number of steps and changes of directions on the right branch
-		numDirectionChange = 0;
-		numSteps = 0;
-		tSum = 0.0;
-		while(tSum < rTimeElapsed){
-			tSum += Randomizer.nextExponential(m_lambdaDirectionChange); 
-			numDirectionChange += 1;
-		}
-		numDirectionChange -=1;
-		numSteps = numDirectionChange;
-		double[]r_steps = new double [numSteps];
-		for(int i = 0; i < numSteps; i++){
-			r_steps[i] = Randomizer.nextExponential(m_lambdaStepLength);
-		}
+		numSteps = (int)(rTimeElapsed/timeStep);
 		//find location of right child
 		//set right child location initially to that of parent
 		taxonLocations[rightChild.getNr()][0] = taxonLocations[root.getNr()][0];
 		taxonLocations[rightChild.getNr()][1] = taxonLocations[root.getNr()][1];
 		double r_direction = old_direction;
-		for (int i = 0; i < numDirectionChange; i++){
+		for (int i = 0; i < numSteps; i++){
 			clockwiseCouterClockwiseOrSameDirection = Randomizer.nextDouble();
 			cur_direction = Randomizer.nextDouble() *Math.PI;
 			if (clockwiseCouterClockwiseOrSameDirection <= m_clockwiseProb)//direction is clockwise
 				r_direction = cur_direction *-1;
 			else if (clockwiseCouterClockwiseOrSameDirection <= m_clockwiseProb + m_counterClockwiseProb)//direction is counter clockwise
 				r_direction = cur_direction;
-			step = r_steps[i];
-			lat = Math.sin(r_direction)*step;
-			lon = Math.cos(r_direction)*step;
+			lat = Math.sin(r_direction)*spatialStep;
+			lon = Math.cos(r_direction)*spatialStep;
 			taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
 			taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon;
 		}		

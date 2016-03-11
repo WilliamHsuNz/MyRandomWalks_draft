@@ -15,6 +15,7 @@ import org.apache.commons.math3.distribution.GammaDistribution;
 import org.apache.commons.math3.distribution.LogNormalDistribution;
 import org.apache.commons.math3.distribution.MultivariateNormalDistribution;
 
+import beast.core.BEASTInterface;
 import beast.core.Description;
 import beast.core.Input;
 import beast.core.BEASTObject;
@@ -63,10 +64,12 @@ public class SeqgenSRWWithBoundary extends beast.core.Runnable {
 	public Input<String> m_outputFileNameInput = new Input<String>("outputFileName","If provided, simulated alignment is written to this file rather " + "than to standard out.");
 
 	//public Input<String> m_rwTypeInput = new Input<String>("rwType", "Random Walk tyep");
-	public Input<Double> m_lambdaDirectionChangeEventInput = new Input<Double>("lambdaDirectionChangeEvent", "parameter for exponential distribution (default 1.0).", 1.0);
-	public Input<Double> m_lambdaStepLengthInput = new Input<Double>("lambdaStepLength", "parameter for exponential distribution (default 1.0).", 1.0);
-	public Input<Double> m_latBoundaryInput = new Input<Double>("latBoundary", "Latitude boundary (default 1000000000).", 1000000000.0);
-	public Input<Double> m_lonBoundaryInput = new Input<Double>("lonBoundary", "Longitude boundary(default 1000000000.", 1000000000.0);
+	public Input<Double> m_timeStepInput = new Input<Double>("timeStep", "Time step between moves (default 0.01).", 0.01);
+	public Input<Double> m_spatialStepInput = new Input<Double>("spatialStep", "spatial step of moves (default 0.01).", 0.01);
+	public Input<Double> m_maxLatBoundaryInput = new Input<Double>("maxLatBoundary", "Maximum Latitude boundary (default 20.0).",20.0);
+	public Input<Double> m_minLatBoundaryInput = new Input<Double>("minLatBoundary", "Maximum Latitude boundary (default -20.0).", -20.0);
+	public Input<Double> m_maxLonBoundaryInput = new Input<Double>("maxLonBoundary", "Maximum Longitude boundary(default 20.0).", 20.0);
+	public Input<Double> m_minLonBoundaryInput = new Input<Double>("minLonBoundary", "Minimum Longitude boundary(default -20.0).", -20.0);
 	/**
 	 * nr of samples to generate *
 	 */
@@ -110,10 +113,12 @@ public class SeqgenSRWWithBoundary extends beast.core.Runnable {
 	/**
 	 *  lambda for exponential distribution
 	 */
-	double m_lambdaDirectionChange;
-	double m_lambdaStepLength;
-	double m_latBoundary;
-	double m_lonBoundary;
+	double timeStep;
+	double spatialStep;
+	double maxLatBoundary;
+	double minLatBoundary;
+	double maxLonBoundary;
+	double minLonBoundary;
 	double direction;
 
 	public double [][] taxonLocations;
@@ -129,11 +134,13 @@ public class SeqgenSRWWithBoundary extends beast.core.Runnable {
 		m_categoryCount = m_siteModel.getCategoryCount();
 		m_probabilities = new double[m_categoryCount][m_stateCount * m_stateCount];
 		m_outputFileName = m_outputFileNameInput.get();
-		m_lambdaDirectionChange = m_lambdaDirectionChangeEventInput.get();
-		m_lambdaStepLength = m_lambdaStepLengthInput.get();
-		m_latBoundary = m_latBoundaryInput.get();
-		m_lonBoundary = m_lonBoundaryInput.get();
-	}
+		timeStep = m_timeStepInput.get();
+		spatialStep = m_spatialStepInput.get();
+		maxLatBoundary = m_maxLatBoundaryInput.get();
+		minLatBoundary = m_minLatBoundaryInput.get();
+		maxLonBoundary = m_maxLonBoundaryInput.get();
+		minLonBoundary = m_minLonBoundaryInput.get();
+	} 
 
 	@Override	
 	public void run() throws Exception {
@@ -221,222 +228,40 @@ public class SeqgenSRWWithBoundary extends beast.core.Runnable {
 		double rTimeElapsed = rootHeight - rightChild.getHeight();
 
 		//find number of steps and changes of directions on the left branch
-		int numDirectionChange = 0;
-		int numSteps = 0;
-		double tSum = 0;
-		while(tSum < lTimeElapsed){
-			tSum += Randomizer.nextExponential(m_lambdaDirectionChange); 
-			numDirectionChange += 1; 
-		}
-		numDirectionChange -=1;
-		numSteps = numDirectionChange;
-		double[]l_steps = new double [numSteps];
-		for(int i = 0; i < numSteps; i++){
-			l_steps[i] = Randomizer.nextExponential(m_lambdaStepLength);
-		}
+		int numSteps = (int)(lTimeElapsed/timeStep);
 		//find location of left child
 		double step;
 		double lat;
 		double lon;
+		double proposedLat;
+		double proposedLon;
+		//boolean accept = true;
 		//set left child location initially to that of parent
 		taxonLocations[leftChild.getNr()][0] = taxonLocations[root.getNr()][0];
 		taxonLocations[leftChild.getNr()][1] = taxonLocations[root.getNr()][1];
-		for (int i = 0; i < numDirectionChange; i++){
+		for (int i = 0; i < numSteps; i++){
 			direction = Randomizer.nextDouble() *Math.PI;
 			direction = (Randomizer.nextBoolean() == true)? direction : direction* -1;//clockwise or counter-clockwise
-			step = l_steps[i];
-			lat = Math.sin(direction)*step;
-			lon = Math.cos(direction)*step;
+			lat = Math.sin(direction)*spatialStep;
+			lon = Math.cos(direction)*spatialStep;
+			proposedLat = taxonLocations[leftChild.getNr()][0] + lat;
+			proposedLon = taxonLocations[leftChild.getNr()][0] + lat;
 			//boundary handling
-			double latDifferenceToLatBoundary;
-			double lonDifferenceToLatBoundary;
-			double hypotenuseToLatBoundary;
-			double lonDifferenceToLonBoundary;
-			double latDifferenceToLonBoundary;
-			double hypotenuseToLonBoundary;
-			if(m_latBoundary > 0 && m_lonBoundary > 0){
-				if(taxonLocations[leftChild.getNr()][0] + lat >m_latBoundary || 
-					taxonLocations[leftChild.getNr()][1] + lon > m_lonBoundary){
-					//find distance to lat boundary
-					latDifferenceToLatBoundary = m_latBoundary - taxonLocations[leftChild.getNr()][0];
-					hypotenuseToLatBoundary = latDifferenceToLatBoundary / Math.sin(direction);
-					lonDifferenceToLatBoundary = hypotenuseToLatBoundary* Math.cos(direction);
-					//find distance to lon boundary
-					lonDifferenceToLonBoundary = m_lonBoundary - taxonLocations[leftChild.getNr()][1];
-					hypotenuseToLonBoundary = lonDifferenceToLonBoundary / Math.cos(direction);
-					latDifferenceToLonBoundary = hypotenuseToLonBoundary* Math.sin(direction);
-					//find hitting point
-					if (hypotenuseToLatBoundary < hypotenuseToLonBoundary){//walker hits lat boundary 
-						//set intersection
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + latDifferenceToLatBoundary; 
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lonDifferenceToLatBoundary;
-						//turn walker around
-						step = step - hypotenuseToLatBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon; 	
-					}else{//walker hits lon boundary
-						//set intersection
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + latDifferenceToLonBoundary; 
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lonDifferenceToLonBoundary;
-						//turn walker around
-						step = step - hypotenuseToLonBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon; 
-					}
-				}else{//the step does not hit any boundary
-					taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
-					taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon;		
-				}	
+			while (proposedLat > maxLatBoundary && proposedLat < minLatBoundary && proposedLon > maxLonBoundary && proposedLon < minLonBoundary){
+				direction = Randomizer.nextDouble() *Math.PI;
+				direction = (Randomizer.nextBoolean() == true)? direction : direction* -1;//clockwise or counter-clockwise
+				lat = Math.sin(direction)*spatialStep;
+				lon = Math.cos(direction)*spatialStep;	
+				proposedLat = taxonLocations[leftChild.getNr()][0] + lat;
+				proposedLon = taxonLocations[leftChild.getNr()][0] + lat;
 			}
-			else if(m_latBoundary < 0 && m_lonBoundary < 0){
-				if(taxonLocations[leftChild.getNr()][0] + lat < m_latBoundary || 
-					taxonLocations[leftChild.getNr()][1] + lon < m_lonBoundary){
-					//find distance to lat boundary
-					latDifferenceToLatBoundary = m_latBoundary - taxonLocations[leftChild.getNr()][0];
-					hypotenuseToLatBoundary = latDifferenceToLatBoundary / Math.sin(direction);//this will be a positive number
-					lonDifferenceToLatBoundary = hypotenuseToLatBoundary* Math.cos(direction);
-					//find distance to lon boundary
-					lonDifferenceToLonBoundary = m_lonBoundary - taxonLocations[leftChild.getNr()][1];
-					hypotenuseToLonBoundary = lonDifferenceToLonBoundary / Math.cos(direction);//this will be a positive number
-					latDifferenceToLonBoundary = hypotenuseToLonBoundary* Math.sin(direction);
-					//find hitting point
-					if (hypotenuseToLatBoundary < hypotenuseToLonBoundary){//walker hits lat boundary 
-						//set intersection
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + latDifferenceToLatBoundary; 
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lonDifferenceToLatBoundary;
-						//turn walker around
-						step = step - hypotenuseToLatBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon; 
-					}else{//walker hits lon boundary
-						//set intersection
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + latDifferenceToLonBoundary; 
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lonDifferenceToLonBoundary;
-						//turn walker around
-						step = step - hypotenuseToLonBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon; 
-					}
-				}else{//the step does not hit any boundary
-					taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
-					taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon;		
-				}		
-			}
-			else if(m_latBoundary > 0 && m_lonBoundary < 0){
-				if(taxonLocations[leftChild.getNr()][0] + lat > m_latBoundary || 
-					taxonLocations[leftChild.getNr()][1] + lon < m_lonBoundary){
-					//find distance to lat boundary
-					latDifferenceToLatBoundary = m_latBoundary - taxonLocations[leftChild.getNr()][0];
-					hypotenuseToLatBoundary = latDifferenceToLatBoundary / Math.sin(direction);//this will be a positive number
-					lonDifferenceToLatBoundary = hypotenuseToLatBoundary* Math.cos(direction);
-					//find distance to lon boundary
-					lonDifferenceToLonBoundary = m_lonBoundary - taxonLocations[leftChild.getNr()][1];
-					hypotenuseToLonBoundary = lonDifferenceToLonBoundary / Math.cos(direction);//this will be a positive number
-					latDifferenceToLonBoundary = hypotenuseToLonBoundary* Math.sin(direction);
-					//find hitting point
-					if (hypotenuseToLatBoundary < hypotenuseToLonBoundary){//walker hits lat boundary 
-						//set intersection
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + latDifferenceToLatBoundary; 
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lonDifferenceToLatBoundary;
-						//turn walker around
-						step = step - hypotenuseToLatBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon; 
-					}else{//walker hits lon boundary
-						//set intersection
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + latDifferenceToLonBoundary; 
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lonDifferenceToLonBoundary;
-						//turn walker around
-						step = step - hypotenuseToLonBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon; 
-					}
-				}else{//the step does not hit any boundary
-					taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
-					taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon;		
-				}		
-			}
-			else if(m_latBoundary < 0 && m_lonBoundary > 0){
-				if(taxonLocations[leftChild.getNr()][0] + lat < m_latBoundary || 
-					taxonLocations[leftChild.getNr()][1] + lon > m_lonBoundary){
-					//find distance to lat boundary
-					latDifferenceToLatBoundary = m_latBoundary - taxonLocations[leftChild.getNr()][0];
-					hypotenuseToLatBoundary = latDifferenceToLatBoundary / Math.sin(direction);//this will be a positive number
-					lonDifferenceToLatBoundary = hypotenuseToLatBoundary* Math.cos(direction);
-					//find distance to lon boundary
-					lonDifferenceToLonBoundary = m_lonBoundary - taxonLocations[leftChild.getNr()][1];
-					hypotenuseToLonBoundary = lonDifferenceToLonBoundary / Math.cos(direction);//this will be a positive number
-					latDifferenceToLonBoundary = hypotenuseToLonBoundary* Math.sin(direction);
-					//find hitting point
-					if (hypotenuseToLatBoundary < hypotenuseToLonBoundary){//walker hits lat boundary 
-						//set intersection
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + latDifferenceToLatBoundary; 
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lonDifferenceToLatBoundary;
-						//turn walker around
-						step = step - hypotenuseToLatBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon; 
-					}else{//walker hits lon boundary
-						//set intersection
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + latDifferenceToLonBoundary; 
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lonDifferenceToLonBoundary;
-						//turn walker around
-						step = step - hypotenuseToLonBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
-						taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon; 
-						}
-				}else{//the step does not hit any boundary
-					taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
-					taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon;		
-				}	
-			}
+			taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
+			taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon; 	
 		}	
 		//find number of steps and changes of directions on the right branch
-		numDirectionChange = 0;
-		numSteps = 0;
-		tSum = 0.0;
-		while(tSum < rTimeElapsed){
-			tSum += Randomizer.nextExponential(m_lambdaDirectionChange); 
-			numDirectionChange += 1;
-		}
-		numDirectionChange -=1;
-		numSteps = numDirectionChange;
-		double[]r_steps = new double [numSteps];
-		for(int i = 0; i < numSteps; i++){
-			r_steps[i] = Randomizer.nextExponential(m_lambdaStepLength);
-		}
+
+		numSteps = (int)(rTimeElapsed/timeStep);
+		
 		//find location of right child
 		step = 0.0;
 		lat = 0.0;
@@ -444,187 +269,24 @@ public class SeqgenSRWWithBoundary extends beast.core.Runnable {
 		//set right child location initially to that of parent
 		taxonLocations[rightChild.getNr()][0] = taxonLocations[root.getNr()][0];
 		taxonLocations[rightChild.getNr()][1] = taxonLocations[root.getNr()][1];
-		for (int i = 0; i < numDirectionChange; i++){
+		for (int i = 0; i < numSteps; i++){
 			direction = Randomizer.nextDouble() *Math.PI;
 			direction = (Randomizer.nextBoolean() == true)? direction : direction* -1;//clockwise or counter-clockwise
-			step = r_steps[i];
-			lat = Math.sin(direction)*step;
-			lon = Math.cos(direction)*step;
+			lat = Math.sin(direction)*spatialStep;
+			lon = Math.cos(direction)*spatialStep;
+			proposedLat = taxonLocations[rightChild.getNr()][0] + lat;
+			proposedLon = taxonLocations[rightChild.getNr()][0] + lat;
 			//boundary handling
-			double latDifferenceToLatBoundary;
-			double lonDifferenceToLatBoundary;
-			double hypotenuseToLatBoundary;
-			double lonDifferenceToLonBoundary;
-			double latDifferenceToLonBoundary;
-			double hypotenuseToLonBoundary;
-			if(m_latBoundary > 0 && m_lonBoundary > 0){
-				if(taxonLocations[rightChild.getNr()][0] + lat >m_latBoundary || 
-						taxonLocations[rightChild.getNr()][1] + lon > m_lonBoundary){
-					//find distance to lat boundary
-					latDifferenceToLatBoundary = m_latBoundary - taxonLocations[rightChild.getNr()][0];
-					hypotenuseToLatBoundary = latDifferenceToLatBoundary / Math.sin(direction);
-					lonDifferenceToLatBoundary = hypotenuseToLatBoundary* Math.cos(direction);
-					//find distance to lon boundary
-					lonDifferenceToLonBoundary = m_lonBoundary - taxonLocations[rightChild.getNr()][1];
-					hypotenuseToLonBoundary = lonDifferenceToLonBoundary / Math.cos(direction);
-					latDifferenceToLonBoundary = hypotenuseToLonBoundary* Math.sin(direction);
-					//find hitting point
-					if (hypotenuseToLatBoundary < hypotenuseToLonBoundary){//walker hits lat boundary 
-						//set intersection
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + latDifferenceToLatBoundary; 
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lonDifferenceToLatBoundary;
-						//turn walker around
-						step = step - hypotenuseToLatBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon; 	
-					}else{//walker hits lon boundary
-						//set intersection
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + latDifferenceToLonBoundary; 
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lonDifferenceToLonBoundary;
-						//turn walker around
-						step = step - hypotenuseToLonBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon; 
-					}
-				}else{//the step does not hit any boundary
-					taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
-					taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon;	
-				}
+			while (proposedLat > maxLatBoundary && proposedLat < minLatBoundary && proposedLon > maxLonBoundary && proposedLon < minLonBoundary){
+				direction = Randomizer.nextDouble() *Math.PI;
+				direction = (Randomizer.nextBoolean() == true)? direction : direction* -1;//clockwise or counter-clockwise
+				lat = Math.sin(direction)*spatialStep;
+				lon = Math.cos(direction)*spatialStep;	
+				proposedLat = taxonLocations[rightChild.getNr()][0] + lat;
+				proposedLon = taxonLocations[rightChild.getNr()][0] + lat;
 			}
-			else if(m_latBoundary < 0 && m_lonBoundary < 0){
-				if(taxonLocations[rightChild.getNr()][0] + lat < m_latBoundary || 
-						taxonLocations[rightChild.getNr()][1] + lon < m_lonBoundary){
-					//find distance to lat boundary
-					latDifferenceToLatBoundary = m_latBoundary - taxonLocations[rightChild.getNr()][0];
-					hypotenuseToLatBoundary = latDifferenceToLatBoundary / Math.sin(direction);//this will be a positive number
-					lonDifferenceToLatBoundary = hypotenuseToLatBoundary* Math.cos(direction);
-					//find distance to lon boundary
-					lonDifferenceToLonBoundary = m_lonBoundary - taxonLocations[rightChild.getNr()][1];
-					hypotenuseToLonBoundary = lonDifferenceToLonBoundary / Math.cos(direction);//this will be a positive number
-					latDifferenceToLonBoundary = hypotenuseToLonBoundary* Math.sin(direction);
-					//find hitting point
-					if (hypotenuseToLatBoundary < hypotenuseToLonBoundary){//walker hits lat boundary 
-						//set intersection
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + latDifferenceToLatBoundary; 
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lonDifferenceToLatBoundary;
-						//turn walker around
-						step = step - hypotenuseToLatBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon; 
-					}else{//walker hits lon boundary
-						//set intersection
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + latDifferenceToLonBoundary; 
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lonDifferenceToLonBoundary;
-						//turn walker around
-						step = step - hypotenuseToLonBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon; 
-					}
-				}else{//the step does not hit any boundary
-					taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
-					taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon;	
-				}		
-			}
-			else if(m_latBoundary > 0 && m_lonBoundary < 0){
-				if(taxonLocations[rightChild.getNr()][0] + lat > m_latBoundary || 
-						taxonLocations[rightChild.getNr()][1] + lon < m_lonBoundary){
-					//find distance to lat boundary
-					latDifferenceToLatBoundary = m_latBoundary - taxonLocations[rightChild.getNr()][0];
-					hypotenuseToLatBoundary = latDifferenceToLatBoundary / Math.sin(direction);//this will be a positive number
-					lonDifferenceToLatBoundary = hypotenuseToLatBoundary* Math.cos(direction);
-					//find distance to lon boundary
-					lonDifferenceToLonBoundary = m_lonBoundary - taxonLocations[rightChild.getNr()][1];
-					hypotenuseToLonBoundary = lonDifferenceToLonBoundary / Math.cos(direction);//this will be a positive number
-					latDifferenceToLonBoundary = hypotenuseToLonBoundary* Math.sin(direction);
-					//find hitting point
-					if (hypotenuseToLatBoundary < hypotenuseToLonBoundary){//walker hits lat boundary 
-						//set intersection
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + latDifferenceToLatBoundary; 
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lonDifferenceToLatBoundary;
-						//turn walker around
-						step = step - hypotenuseToLatBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon; 
-					}else{//walker hits lon boundary
-						//set intersection
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + latDifferenceToLonBoundary; 
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lonDifferenceToLonBoundary;
-						//turn walker around
-						step = step - hypotenuseToLonBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon; 
-					}
-				}else{//the step does not hit any boundary
-					taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
-					taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon;	
-				}		
-			}
-			else if(m_latBoundary < 0 && m_lonBoundary > 0){
-				if(taxonLocations[rightChild.getNr()][0] + lat < m_latBoundary || 
-						taxonLocations[rightChild.getNr()][1] + lon > m_lonBoundary){
-					//find distance to lat boundary
-					latDifferenceToLatBoundary = m_latBoundary - taxonLocations[rightChild.getNr()][0];
-					hypotenuseToLatBoundary = latDifferenceToLatBoundary / Math.sin(direction);//this will be a positive number
-					lonDifferenceToLatBoundary = hypotenuseToLatBoundary* Math.cos(direction);
-					//find distance to lon boundary
-					lonDifferenceToLonBoundary = m_lonBoundary - taxonLocations[rightChild.getNr()][1];
-					hypotenuseToLonBoundary = lonDifferenceToLonBoundary / Math.cos(direction);//this will be a positive number
-					latDifferenceToLonBoundary = hypotenuseToLonBoundary* Math.sin(direction);
-					//find hitting point
-					if (hypotenuseToLatBoundary < hypotenuseToLonBoundary){//walker hits lat boundary 
-						//set intersection
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + latDifferenceToLatBoundary; 
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lonDifferenceToLatBoundary;
-						//turn walker around
-						step = step - hypotenuseToLatBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon; 
-					}else{//walker hits lon boundary
-						//set intersection
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + latDifferenceToLonBoundary; 
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lonDifferenceToLonBoundary;
-						//turn walker around
-						step = step - hypotenuseToLonBoundary;
-						direction = (direction + Math.PI) % (2*Math.PI);
-						lat = Math.sin(direction)*step;
-						lon = Math.cos(direction)*step;
-						//set location of walker after turning back from boundary
-						taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
-						taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon; 
-					}
-				}else{//the step does not hit any boundary
-					taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
-					taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon;	
-				}	
-			}	
+			taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
+			taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon; 				
 		}	
 		if (leftChild.getChildCount() != 0){
 			SRWWithBoundary(leftChild);
@@ -820,7 +482,7 @@ public class SeqgenSRWWithBoundary extends beast.core.Runnable {
 
 			// parse the xml
 			XMLParser parser = new XMLParser();
-			BEASTObject plugin = parser.parseFragment(sXML, true);
+			BEASTInterface plugin = parser.parseFragment(sXML, true);
 
 			// find relevant objects from the model
 			TreeLikelihood treeLikelihood = getTreeLikelihood(plugin);
