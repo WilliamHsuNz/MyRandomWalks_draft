@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Arrays;
 
+import beast.core.BEASTInterface;
 import org.apache.commons.math3.distribution.GammaDistribution;
 import org.apache.commons.math3.distribution.LogNormalDistribution;
 import org.apache.commons.math3.distribution.MultivariateNormalDistribution;
@@ -396,8 +397,21 @@ public class SeqgenRRWGamma extends beast.core.Runnable {
     /**
      * find a treelikelihood object among the plug-ins by recursively inspecting plug-ins *
      */
-    static TreeLikelihood getTreeLikelihood(BEASTObject plugin) throws Exception {
-        for (BEASTObject plugin2 : plugin.listActivePlugins()) {
+//    static TreeLikelihood getTreeLikelihood(BEASTObject plugin) throws Exception {
+//        for (BEASTObject plugin2 : plugin.listActivePlugins()) {
+//            if (plugin2 instanceof TreeLikelihood) {
+//                return (TreeLikelihood) plugin2;
+//            } else {
+//                TreeLikelihood likelihood = getTreeLikelihood(plugin2);
+//                if (likelihood != null) {
+//                    return likelihood;
+//                }
+//            }
+//        }
+//        return null;
+//    }
+    static TreeLikelihood getTreeLikelihood(BEASTInterface plugin) throws Exception {
+        for (BEASTInterface plugin2 : plugin.listActiveBEASTObjects()) {
             if (plugin2 instanceof TreeLikelihood) {
                 return (TreeLikelihood) plugin2;
             } else {
@@ -448,7 +462,7 @@ public class SeqgenRRWGamma extends beast.core.Runnable {
 
             // parse the xml
             XMLParser parser = new XMLParser();
-            BEASTObject plugin = parser.parseFragment(sXML, true);
+            BEASTInterface plugin = parser.parseFragment(sXML, true);
 
             // find relevant objects from the model
             TreeLikelihood treeLikelihood = getTreeLikelihood(plugin);

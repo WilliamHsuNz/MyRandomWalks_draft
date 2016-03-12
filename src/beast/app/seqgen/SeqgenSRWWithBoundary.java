@@ -11,9 +11,9 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Arrays;
 
-import org.apache.commons.math3.distribution.GammaDistribution;
-import org.apache.commons.math3.distribution.LogNormalDistribution;
-import org.apache.commons.math3.distribution.MultivariateNormalDistribution;
+//import org.apache.commons.math3.distribution.GammaDistribution;
+//import org.apache.commons.math3.distribution.LogNormalDistribution;
+//import org.apache.commons.math3.distribution.MultivariateNormalDistribution;
 
 import beast.core.BEASTInterface;
 import beast.core.Description;
@@ -245,15 +245,15 @@ public class SeqgenSRWWithBoundary extends beast.core.Runnable {
 			lat = Math.sin(direction)*spatialStep;
 			lon = Math.cos(direction)*spatialStep;
 			proposedLat = taxonLocations[leftChild.getNr()][0] + lat;
-			proposedLon = taxonLocations[leftChild.getNr()][0] + lat;
+			proposedLon = taxonLocations[leftChild.getNr()][1] + lon;
 			//boundary handling
-			while (proposedLat > maxLatBoundary && proposedLat < minLatBoundary && proposedLon > maxLonBoundary && proposedLon < minLonBoundary){
+			while (proposedLat > maxLatBoundary || proposedLat < minLatBoundary || proposedLon > maxLonBoundary || proposedLon < minLonBoundary){
 				direction = Randomizer.nextDouble() *Math.PI;
 				direction = (Randomizer.nextBoolean() == true)? direction : direction* -1;//clockwise or counter-clockwise
 				lat = Math.sin(direction)*spatialStep;
 				lon = Math.cos(direction)*spatialStep;	
 				proposedLat = taxonLocations[leftChild.getNr()][0] + lat;
-				proposedLon = taxonLocations[leftChild.getNr()][0] + lat;
+				proposedLon = taxonLocations[leftChild.getNr()][1] + lon;
 			}
 			taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
 			taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon; 	
@@ -275,15 +275,15 @@ public class SeqgenSRWWithBoundary extends beast.core.Runnable {
 			lat = Math.sin(direction)*spatialStep;
 			lon = Math.cos(direction)*spatialStep;
 			proposedLat = taxonLocations[rightChild.getNr()][0] + lat;
-			proposedLon = taxonLocations[rightChild.getNr()][0] + lat;
+			proposedLon = taxonLocations[rightChild.getNr()][1] + lon;
 			//boundary handling
-			while (proposedLat > maxLatBoundary && proposedLat < minLatBoundary && proposedLon > maxLonBoundary && proposedLon < minLonBoundary){
+			while (proposedLat > maxLatBoundary || proposedLat < minLatBoundary || proposedLon > maxLonBoundary || proposedLon < minLonBoundary){
 				direction = Randomizer.nextDouble() *Math.PI;
 				direction = (Randomizer.nextBoolean() == true)? direction : direction* -1;//clockwise or counter-clockwise
 				lat = Math.sin(direction)*spatialStep;
 				lon = Math.cos(direction)*spatialStep;	
 				proposedLat = taxonLocations[rightChild.getNr()][0] + lat;
-				proposedLon = taxonLocations[rightChild.getNr()][0] + lat;
+				proposedLon = taxonLocations[rightChild.getNr()][1] + lon;
 			}
 			taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
 			taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon; 				
@@ -355,6 +355,9 @@ public class SeqgenSRWWithBoundary extends beast.core.Runnable {
 		}
 
 		Alignment alignment = new Alignment();
+		//v2.4
+		alignment.userDataTypeInput.setValue(m_data.get().getDataType(), alignment);
+        alignment.setID("SequenceSimulator");
 		//alignment.setDataType(m_siteModel.getFrequencyModel().getDataType());
 		//alignment.userDataTypeInput.setValue(m_data.get().getDataType(), alignment);
 		//alignment.setID("SequenceSimulatorBrownianMotion");
@@ -430,8 +433,8 @@ public class SeqgenSRWWithBoundary extends beast.core.Runnable {
 	/**
 	 * find a treelikelihood object among the plug-ins by recursively inspecting plug-ins *
 	 */
-	static TreeLikelihood getTreeLikelihood(BEASTObject plugin) throws Exception {
-		for (BEASTObject plugin2 : plugin.listActivePlugins()) {
+	static TreeLikelihood getTreeLikelihood(BEASTInterface plugin) throws Exception {
+		for (BEASTInterface plugin2 : plugin.listActiveBEASTObjects()) {
 			if (plugin2 instanceof TreeLikelihood) {
 				return (TreeLikelihood) plugin2;
 			} else {
