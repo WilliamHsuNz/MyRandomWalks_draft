@@ -61,9 +61,8 @@ public class SeqgenCRW extends beast.core.Runnable {
 	public Input<Integer> m_sequenceLengthInput = new Input<Integer>("sequencelength", "nr of samples to generate (default 1000).", 1000);
 	public Input<String> m_outputFileNameInput = new Input<String>("outputFileName","If provided, simulated alignment is written to this file rather " + "than to standard out.");
 
-	//public Input<String> m_rwTypeInput = new Input<String>("rwType", "Random Walk tyep");
-	//public Input<Double> m_lambda_turnInput = new Input<Double>("lambdaTurningEvent", "parameter for exponential distribution (default 1.0).", 1.0);
-	//public Input<Double> m_lambda_stepLengthInput = new Input<Double>("lambdaStepLength", "parameter for exponential distribution (default 1.0).", 1.0);
+	public Input<Double>m_timeStepInput = new Input<Double>("timeStep", "time step between moves(default 0.001)", 0.001);
+	public Input<Double>m_spatialStepInput = new Input<Double>("spatialStep", "spatial step between moves(default 0.001)", 0.001);
 	public Input<Double> m_kInput = new Input<Double>("k", "parameter for Von Mises Distribution (default 1.0).", 1.0);
 	/**
 	 * nr of samples to generate *
@@ -130,8 +129,8 @@ public class SeqgenCRW extends beast.core.Runnable {
 		m_k = m_kInput.get();
 		MersenneTwisterFast mtf = new MersenneTwisterFast();
 		vm = new VonMises(m_k, mtf);
-		timeStep = m_tree.getNodeCount()/(Math.pow(m_tree.getNodeCount(), 2));
-		spatialStep = timeStep;
+		timeStep = m_timeStepInput.get();
+		spatialStep = m_spatialStepInput.get();
 	}
 	
 

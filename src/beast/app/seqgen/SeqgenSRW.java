@@ -33,7 +33,7 @@ import beast.util.Randomizer;
 import beast.util.TreeParser;
 import beast.util.XMLParser;
 import beast.util.XMLProducer;
-
+//import beast.sphericalGeo.TreeTraitMap;
 
 
 /**
@@ -476,6 +476,11 @@ public class SeqgenSRW extends beast.core.Runnable {
 			treeSimulator.init(data, tree, pSiteModel, pBranchRateModel, nReplications);
 			XMLProducer producer = new XMLProducer();
 			Alignment alignment = treeSimulator.simulate();
+
+			//TreeTraitMap ttm = new TreeTraitMap();
+			//ttm.init(tree, alignment, "Location");
+
+
 			sXML = producer.toRawXML(alignment);
 			out.println("<beast version='2.0'>");
 			out.println(sXML);

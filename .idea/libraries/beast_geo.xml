@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="beast-geo">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../beast-geo" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../beast-geo/src" />
+    </SOURCES>
+  </library>
+</component>
