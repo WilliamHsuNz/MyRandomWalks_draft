@@ -1,0 +1,57 @@
+<beast version='2.0'
+       namespace='beast.evolution.alignment:beast.core:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood'>
+    <!--  4/3/2016 -->
+    <!--
+        <data id="alignment" dataType="nucleotide">
+            <sequence taxon="human">?</sequence>
+            <sequence taxon="chimp">?</sequence>
+            <sequence taxon="bonobo">?</sequence>
+            <sequence taxon="gorilla">?</sequence>
+            <sequence taxon="orangutan">?</sequence>
+            <sequence taxon="siamang">?</sequence>
+        </data>
+
+        <tree id='tree' spec='beast.util.TreeParser' newick='((((human:0.02096625515232275,(chimp:0.014857143159686462,bonobo:0.014857143159686462):0.0061091119926362895):0.012862878672687175,gorilla:0.033829133825009926):0.029471223948245952,orangutan:0.06330035777325588):0.0031773962188650223,siamang:0.0664777539921209)' taxa='@alignment'/>
+    -->
+
+    <data id="alignment" dataType="nucleotide">
+        <sequence taxon="t0">?</sequence>
+        <sequence taxon="t1">?</sequence>
+        <sequence taxon="t2">?</sequence>
+        <sequence taxon="t3">?</sequence>
+        <sequence taxon="t4">?</sequence>
+    </data>
+
+
+    <state>
+        <stateNode spec='beast.evolution.tree.Tree' id='tree'/>
+    </state>
+
+    <!-- initialise random tree using alignment-->
+    <init estimate="false" id="RandomTree" initial="@tree" spec="beast.evolution.tree.RandomTree" taxa="@alignment">
+        <populationModel id="ConstantPopulation" spec="ConstantPopulation">
+            <parameter id="randomPopSize" name="popSize">5.0</parameter>
+            <!--popsize set to the number of taxons-->
+        </populationModel>
+    </init>
+
+    <run spec="beast.app.seqgen.TreeTraitMapTest" id="seqgen" data='@alignment' tree='@RandomTree' sequencelength='3000' timeStep ='0.01' spatialStep ='0.1'  outputFileName = 'seqgenSRW.xml'>
+        <siteModel spec='SiteModel' id="siteModel" gammaCategoryCount='1'>
+            <!--
+                        <substModel spec='JukesCantor' id='JC69'/>
+            -->
+            <substModel spec='HKY' id='hky'>
+                <parameter name='kappa' id="hky.kappa" value="5.0" lower="0.0"/>
+                <frequencies id='freqs' spec='Frequencies'>
+                    <data idref='alignment'/>
+                </frequencies>
+            </substModel>
+
+
+        </siteModel>
+
+        <branchRateModel id="StrictClock" spec="beast.evolution.branchratemodel.StrictClockModel">
+            <parameter dimension="1" estimate="false" id="clockRate" minordimension="1" name="clock.rate" value="1.0"/>
+        </branchRateModel>
+    </run>
+</beast>

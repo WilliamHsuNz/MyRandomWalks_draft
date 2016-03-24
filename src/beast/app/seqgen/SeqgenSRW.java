@@ -3,6 +3,7 @@ package beast.app.seqgen;
 import beast.core.BEASTInterface;
 import ec.util.MersenneTwisterFast;
 import sim.util.distribution.VonMises;
+import sphericalGeo.TreeTraitMap;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -115,6 +116,7 @@ public class SeqgenSRW extends beast.core.Runnable {
 	double timeStep;
 	double spatialStep;
 	double direction;
+	TreeTraitMap ttm = new TreeTraitMap();
 
 	public double [][] taxonLocations;
 
@@ -138,7 +140,9 @@ public class SeqgenSRW extends beast.core.Runnable {
 		//initAndValidate();
 		makeRootLocation(m_tree);
 		System.out.println(m_tree);
-
+		//double [] ttm_parameters =
+		//ttm.init(m_tree, taxonLocations, "Locations");
+		
 		for(double [] x : taxonLocations)
 			System.out.println(Arrays.toString(x));
 		//output for R plot
@@ -476,10 +480,6 @@ public class SeqgenSRW extends beast.core.Runnable {
 			treeSimulator.init(data, tree, pSiteModel, pBranchRateModel, nReplications);
 			XMLProducer producer = new XMLProducer();
 			Alignment alignment = treeSimulator.simulate();
-
-			//TreeTraitMap ttm = new TreeTraitMap();
-			//ttm.init(tree, alignment, "Location");
-
 
 			sXML = producer.toRawXML(alignment);
 			out.println("<beast version='2.0'>");

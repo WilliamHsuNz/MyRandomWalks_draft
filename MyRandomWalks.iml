@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <javadoc-paths>
+      <root url="file://$MODULE_DIR$/../beast2" />
+      <root url="file://$MODULE_DIR$/../beast-geo" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="beast-geo" />
+    <orderEntry type="module" module-name="beast2" />
+    <orderEntry type="library" name="mason.19" level="project" />
+    <orderEntry type="module" module-name="beast-classic" />
+  </component>
+</module>
