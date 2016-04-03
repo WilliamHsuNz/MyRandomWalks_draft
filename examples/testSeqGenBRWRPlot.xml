@@ -35,102 +35,10 @@
         <sequence taxon="t17">?</sequence>
         <sequence taxon="t18">?</sequence>
         <sequence taxon="t19">?</sequence>
-        <sequence taxon="t20">?</sequence>
-        <sequence taxon="t21">?</sequence>
-        <sequence taxon="t22">?</sequence>
-        <sequence taxon="t23">?</sequence>
-        <sequence taxon="t24">?</sequence>
-        <sequence taxon="t25">?</sequence>
-        <sequence taxon="t26">?</sequence>
-        <sequence taxon="t27">?</sequence>
-        <sequence taxon="t28">?</sequence>
-        <sequence taxon="t29">?</sequence>
-        <sequence taxon="t30">?</sequence>
-        <sequence taxon="t31">?</sequence>
-        <sequence taxon="t32">?</sequence>
-        <sequence taxon="t33">?</sequence>
-        <sequence taxon="t34">?</sequence>
-        <sequence taxon="t35">?</sequence>
-        <sequence taxon="t36">?</sequence>
-        <sequence taxon="t37">?</sequence>
-        <sequence taxon="t38">?</sequence>
-        <sequence taxon="t39">?</sequence>
-        <sequence taxon="t40">?</sequence>
-        <sequence taxon="t41">?</sequence>
-        <sequence taxon="t42">?</sequence>
-        <sequence taxon="t43">?</sequence>
-        <sequence taxon="t44">?</sequence>
-        <sequence taxon="t45">?</sequence>
-        <sequence taxon="t46">?</sequence>
-        <sequence taxon="t47">?</sequence>
-        <sequence taxon="t48">?</sequence>
-        <sequence taxon="t49">?</sequence>
-        <sequence taxon="t50">?</sequence>
-        <sequence taxon="t51">?</sequence>
-        <sequence taxon="t52">?</sequence>
-        <sequence taxon="t53">?</sequence>
-        <sequence taxon="t54">?</sequence>
-        <sequence taxon="t55">?</sequence>
-        <sequence taxon="t56">?</sequence>
-        <sequence taxon="t57">?</sequence>
-        <sequence taxon="t58">?</sequence>
-        <sequence taxon="t59">?</sequence>
-        <sequence taxon="t60">?</sequence>
-        <sequence taxon="t61">?</sequence>
-        <sequence taxon="t62">?</sequence>
-        <sequence taxon="t63">?</sequence>
-        <sequence taxon="t64">?</sequence>
-        <sequence taxon="t65">?</sequence>
-        <sequence taxon="t66">?</sequence>
-        <sequence taxon="t67">?</sequence>
-        <sequence taxon="t68">?</sequence>
-        <sequence taxon="t69">?</sequence>
-        <sequence taxon="t70">?</sequence>
-        <sequence taxon="t71">?</sequence>
-        <sequence taxon="t72">?</sequence>
-        <sequence taxon="t73">?</sequence>
-        <sequence taxon="t74">?</sequence>
-        <sequence taxon="t75">?</sequence>
-        <sequence taxon="t76">?</sequence>
-        <sequence taxon="t77">?</sequence>
-        <sequence taxon="t78">?</sequence>
-        <sequence taxon="t79">?</sequence>
-        <sequence taxon="t80">?</sequence>
-        <sequence taxon="t81">?</sequence>
-        <sequence taxon="t82">?</sequence>
-        <sequence taxon="t83">?</sequence>
-        <sequence taxon="t84">?</sequence>
-        <sequence taxon="t85">?</sequence>
-        <sequence taxon="t86">?</sequence>
-        <sequence taxon="t87">?</sequence>
-        <sequence taxon="t88">?</sequence>
-        <sequence taxon="t89">?</sequence>
-        <sequence taxon="t90">?</sequence>
-        <sequence taxon="t91">?</sequence>
-        <sequence taxon="t92">?</sequence>
-        <sequence taxon="t93">?</sequence>
-        <sequence taxon="t94">?</sequence>
-        <sequence taxon="t95">?</sequence>
-        <sequence taxon="t96">?</sequence>
-        <sequence taxon="t97">?</sequence>
-        <sequence taxon="t98">?</sequence>
-        <sequence taxon="t99">?</sequence>
     </data>
+    <tree id='tree' spec='beast.util.TreeParser' IsLabelledNewick='true' newick='((((t0:1.769764501514863,t1:1.769764501514863)t20:9.201416710823594,t2:10.971181212338458)t21:15.775698650337826,((t3:0.0670202341558693,t4:0.0670202341558693)t22:0.2718714809712186,t5:0.3388917151270879)t23:26.407988147549197)t24:54.46439770075082,((t6:1.3626127202794613,t7:1.3626127202794613)t25:8.381244587584717,((t8:3.3216810860896913,((t9:1.201878769905482,t10:1.201878769905482)t26:2.0269193314125165,((t11:0.38297769959033723,t12:0.38297769959033723)t27:0.4547831097945595,(t13:0.17243361631877815,14:0.17243361631877815)t28:0.6653271930661185)t29:2.3910372919331015)t30:0.09288298477169299)t31:1.6454895455429965,(t15:4.586246418729177,((t16:0.17413182825776657,(t17:0.1475886749924496,t18:0.1475886749924496)t32:0.026543153265316977)t33:0.2215138666184095,t19:0.39564569487617607)t34:4.1906007238530005)t35:0.3809242129035111)t36:4.776686676231491)t37:71.46742025556293)t38:0.0'/>
 
-
-    <state>
-        <stateNode spec='beast.evolution.tree.Tree' id='tree'/>
-    </state>
-
-    <!-- initialise random tree using alignment-->
-    <init estimate="false" id="RandomTree" initial="@tree" spec="beast.evolution.tree.RandomTree" taxa="@alignment">
-        <populationModel id="ConstantPopulation" spec="ConstantPopulation">
-            <parameter id="randomPopSize" name="popSize">100.0</parameter>
-            <!--popsize set to the number of taxons-->
-        </populationModel>
-    </init>
-
-    <run spec="beast.app.seqgen.SeqgenBRWRPlot" id="seqgen" data='@alignment' tree='@RandomTree' sequencelength='3000' timeStep = '1' spatialStep = '1'  clockwiseProb = '0.46' counterClockwiseProb = '0.45' outputFileName = 'seqgenBRWRPlot.xml'>
+    <run spec="beast.app.seqgen.SeqgenBRWRPlot" id="seqgen" data='@alignment' tree='@tree' sequencelength='3000' timeStep = '1' spatialStep = '1'  clockwiseProb = '0.30' counterClockwiseProb = '0.60' outputFileName = 'seqgenBRWRPlot.xml'>
         <siteModel spec='SiteModel' id="siteModel" gammaCategoryCount='1'>
             <!--
                         <substModel spec='JukesCantor' id='JC69'/>

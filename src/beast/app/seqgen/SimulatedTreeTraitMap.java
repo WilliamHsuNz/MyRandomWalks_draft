@@ -15,9 +15,10 @@ import beast.evolution.sitemodel.SiteModel;
 import beast.evolution.tree.Node;
 import beast.evolution.tree.Tree;
 import beast.evolution.tree.TreeInterface;
+import beast.evolution.tree.TreeTraitMap;//in beast-classic
 import beast.util.Randomizer;
 import beast.util.XMLProducer;
-import sphericalGeo.TreeTraitMap;
+//import sphericalGeo.TreeTraitMap;
 
 /**
  * Created by williamhsu on 18/03/16.
@@ -25,8 +26,12 @@ import sphericalGeo.TreeTraitMap;
 @Description("Traits containing location data generated using " +
         "simple isotropic random walk are mapped onto a given tree.")
 public class SimulatedTreeTraitMap extends TreeTraitMap {
+
     //final public Input<TreeTraitMap> m_dataInput = new Input<>("data", "trait data which specifies... ", Validate.REQUIRED);
     //final public Input<Tree>m_treeInput = new Input<Tree>("tree", "phylogenetic beast.tree with sequence data in the leafs", Validate.REQUIRED);
+    final public Input<String>m_traitNameInput = new Input<String>("traitName", "Name of trait to be map onto the tree");
+    final public Input<Double>m_timeStepInput = new Input<Double>("timeStep", "time step between moves(default 0.01).", 0.01);
+    final public Input<Double >m_spatialStepInput = new Input<Double>("spatialStep", "spatial step of move(default 0.01).", 0.01);
 
     TreeInterface tree;
     RealParameter rP;
@@ -35,27 +40,38 @@ public class SimulatedTreeTraitMap extends TreeTraitMap {
     double timeStep;
     double spatialStep;
     double direction;
-    //TreeTraitMap ttm;
+    int numberOfLeaves;
+    String value;
+
 
     public SimulatedTreeTraitMap(){
         parameterInput.setRule(Validate.OPTIONAL);
     }
 
     public void initAndValidate(){
-        //ttm = m_dataInput.get();
-        //ttm = m_data.get();
         tree = treeInput.get();
         rP = parameterInput.get();
+        traitName = m_traitNameInput.get();
+        timeStep = m_timeStepInput.get();
+        spatialStep = m_spatialStepInput.get();
 
         if (!(tree instanceof Tree))
             throw new IllegalArgumentException("Tree input must be a true Tree, not just TreeInterface.");
 
         makeRootLocation((Tree)tree);//this needs to be a Tree object it is currently a tree interface
-
-       // traitName = traitNameInput.get();
+        value = "";
+        tree.getLeafNodeCount();
+        for (int i = 0; i < numberOfLeaves; i++) {
+            if (i == numberOfLeaves - 1) {
+                value += "t" + Integer.toString(i) + "=" + Double.toString(taxonLocations[i][0]) + " " +
+                        Double.toString(taxonLocations[i][1]) + "\n";
+            } else {
+                value += "t" + Integer.toString(i) + "=" + Double.toString(taxonLocations[i][0]) + " " +
+                        Double.toString(taxonLocations[i][1]) + ", \n";
+            }
+        }
+        setInputValue("value", value);
         super.initAndValidate();
-       // System.out.println(ttm.getTraitName());
-        //getLeafNodeCount());
     }
 
     private void makeRootLocation(Tree tree){
@@ -118,5 +134,4 @@ public class SimulatedTreeTraitMap extends TreeTraitMap {
             SRW(rightChild);
         }
     }
-
 }
