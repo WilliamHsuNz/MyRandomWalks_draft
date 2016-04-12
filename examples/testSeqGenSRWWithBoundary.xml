@@ -117,7 +117,7 @@
     </populationModel>
 </init>
 
-    <run spec="beast.app.seqgen.SeqgenSRWWithBoundary" id="seqgen" data='@alignment' tree='@RandomTree' sequencelength='3000' timeStep = '0.01' spatialStep = '0.1' maxLatBoundary = '10.0' minLatBoundary = '-10.0' maxLonBoundary = '10.0' minLonBoundary = '-10.0' outputFileName = 'seqgenSRWWithBoundary.xml'>
+    <run spec="beast.app.seqgen.SeqgenSRWWithBoundaryRPlot" id="seqgen" data='@alignment' tree='@RandomTree' sequencelength='3000' timeStep = '0.01' spatialStep = '0.01' maxLatBoundary = '1.0' minLatBoundary = '-1.0' maxLonBoundary = '1.0' minLonBoundary = '-1.0' outputFileName = 'seqgenSRWWithBoundary.xml'>
 	    <siteModel spec='SiteModel' id="siteModel" gammaCategoryCount='1'>
 <!--
 			<substModel spec='JukesCantor' id='JC69'/>

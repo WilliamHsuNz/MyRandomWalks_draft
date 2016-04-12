@@ -60,7 +60,7 @@ public class SimulatedTreeTraitMap extends TreeTraitMap {
 
         makeRootLocation((Tree)tree);//this needs to be a Tree object it is currently a tree interface
         value = "";
-        tree.getLeafNodeCount();
+        numberOfLeaves = tree.getLeafNodeCount();
         for (int i = 0; i < numberOfLeaves; i++) {
             if (i == numberOfLeaves - 1) {
                 value += "t" + Integer.toString(i) + "=" + Double.toString(taxonLocations[i][0]) + " " +

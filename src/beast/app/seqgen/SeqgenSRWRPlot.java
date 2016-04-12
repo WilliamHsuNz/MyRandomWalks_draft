@@ -169,11 +169,6 @@ public class SeqgenSRWRPlot extends beast.core.Runnable {
         File file = new File("/Users/williamhsu/Documents/workspace/MyBrownianMotion/seqgenSRWRPlot.nex");
         file.getParentFile().mkdirs();
         PrintWriter writer = new PrintWriter(file);
-        writer.println("#NEXUS");
-        writer.println("BEGIN DATA;");
-        writer.println("       DIMENSIONS  NTAX =" + m_tree.getLeafNodeCount() + " NCHAR=" + m_sequenceLength + ";");
-        writer.println("       FORMAT DATATYPE = DNA  GAP = - MISSING = ?;");
-        writer.println("       MATRIX");
 
         BufferedReader br = new BufferedReader(new FileReader(m_outputFileName));
         try{
@@ -237,7 +232,7 @@ public class SeqgenSRWRPlot extends beast.core.Runnable {
         //set left child location initially to that of parent
         taxonLocations[leftChild.getNr()][0] = taxonLocations[root.getNr()][0];
         taxonLocations[leftChild.getNr()][1] = taxonLocations[root.getNr()][1];
-        branchCount++;
+        branchCount = leftChild.getNr();
         //start of the branch
         leftBranchLocations [0][0] = taxonLocations[root.getNr()][0];
         leftBranchLocations [0][1] = taxonLocations[root.getNr()][1];
@@ -269,10 +264,11 @@ public class SeqgenSRWRPlot extends beast.core.Runnable {
             if(i == leftBranchLocations.length -1)
                 System.out.print(df.format(leftBranchLocations[i][0]));
             else
-                System.out.print(df.format(leftBranchLocations[i][0]) + ", ");
+                System.out.print(df.format(leftBranchLocations[i][0]) + ",");
         }
         System.out.print("); ");
         System.out.println("lines(Lon" + branchCount +", " + "Lat" + branchCount + ")");
+        //generate csv files
 
         //find number of steps and changes of directions on the right branch
         numSteps = (int)(rTimeElapsed/timeStep);
@@ -281,7 +277,7 @@ public class SeqgenSRWRPlot extends beast.core.Runnable {
         //set right child location initially to that of parent
         taxonLocations[rightChild.getNr()][0] = taxonLocations[root.getNr()][0];
         taxonLocations[rightChild.getNr()][1] = taxonLocations[root.getNr()][1];
-        branchCount++;
+        branchCount= rightChild.getNr();
         //start of the branch
         rightBranchLocations [0][0] = taxonLocations[root.getNr()][0];
         rightBranchLocations [0][1] = taxonLocations[root.getNr()][1];
@@ -315,6 +311,14 @@ public class SeqgenSRWRPlot extends beast.core.Runnable {
         }
         System.out.print("); ");
         System.out.println("lines(Lon" + branchCount +", " + "Lat" + branchCount + ")");
+
+        //File rightBranchFile = new File("/Users/williamhsu/Documents/workspace/MyRandomWalks/seqgenSRWRPlot" + branchCount + ".csv");
+        //rightBranchFile.getParentFile().mkdirs();
+        //PrintWriter rightBranchWriter = new PrintWriter(rightBranchFile);
+        //for(int i = 0; i < rightBranchLocations.length; i++) {
+        //    rightBranchWriter.println(rightBranchLocations[i][0]+", "+ rightBranchLocations[i][1]+", ");
+        //}
+        //rightBranchWriter.close();
 
         if (leftChild.getChildCount() != 0){
             SRW(leftChild);
