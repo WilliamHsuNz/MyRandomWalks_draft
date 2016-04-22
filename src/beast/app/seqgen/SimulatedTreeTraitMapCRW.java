@@ -69,7 +69,13 @@ public class SimulatedTreeTraitMapCRW extends TreeTraitMap {
         if (!(tree instanceof Tree))
             throw new IllegalArgumentException("Tree input must be a true Tree, not just TreeInterface.");
 
-        makeRootLocation((Tree)tree);//this needs to be a Tree object it is currently a tree interface
+        Node root = tree.getRoot();
+        double [] rootLocation = {0.0, 0.0};
+        taxonLocations = new double[tree.getNodeCount()][2];
+        taxonLocations[root.getNr()] = rootLocation;
+        double angle = 0.0;
+        CRW(root, angle);
+       // makeRootLocation((Tree)tree);//this needs to be a Tree object it is currently a tree interface
         value = "";
         numberOfLeaves = tree.getLeafNodeCount();
         for (int i = 0; i < numberOfLeaves; i++) {
@@ -84,7 +90,7 @@ public class SimulatedTreeTraitMapCRW extends TreeTraitMap {
         setInputValue("value", value);
         super.initAndValidate();
     }
-
+/*
     private void makeRootLocation(Tree tree){
         Node root = tree.getRoot();
         System.out.println("Tree Height: " + root.getHeight());
@@ -97,7 +103,7 @@ public class SimulatedTreeTraitMapCRW extends TreeTraitMap {
         double angle = 0.0;
         CRW(root, angle);
     }
-
+*/
     private void CRW(Node root, double angle){
         double rootHeight = root.getHeight();
         Node leftChild = root.getLeft();

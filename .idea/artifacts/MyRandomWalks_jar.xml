@@ -1,0 +1,30 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MyRandomWalks:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MyRandomWalks_jar2</output-path>
+    <root id="archive" name="MyRandomWalks.jar">
+      <element id="module-output" name="BEASTLabs" />
+      <element id="module-output" name="beast2" />
+      <element id="module-output" name="MyRandomWalks" />
+      <element id="module-output" name="beast-geo" />
+      <element id="module-output" name="beast-classic" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../mason/jar/mason.19.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast-geo/lib/jdom.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast-geo/lib/xerces.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast-geo/lib/jts-1.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast-geo/lib/Jama-1.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast-geo/lib/jump-core-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast-geo/lib/jump-workbench-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast-classic/lib/mtj.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../BEASTLabs/lib/junit-4.8.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast2/lib/jam.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast2/lib/colt.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast2/lib/fest.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast2/lib/beagle.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast2/lib/debug-1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast2/lib/junit-4.8.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast2/lib/fest-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast2/lib/antlr-runtime-4.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../beast2/lib/commons-math3-3.1.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

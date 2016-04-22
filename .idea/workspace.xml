@@ -1,22 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="MyRandomWalks:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="1d8560c9-aee6-4b0c-af59-04e8868b6b7b" name="Default" comment="a">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MyRandomWalks/beast/app/seqgen/SeqgenSRWRPlot.class" afterPath="$PROJECT_DIR$/out/production/MyRandomWalks/beast/app/seqgen/SeqgenSRWRPlot.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MyRandomWalks/beast/app/seqgen/SimulatedTreeTraitMap.class" afterPath="$PROJECT_DIR$/out/production/MyRandomWalks/beast/app/seqgen/SimulatedTreeTraitMap.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MyRandomWalks/beast/app/seqgen/SimulatedTreeTraitMapBRW.class" afterPath="$PROJECT_DIR$/out/production/MyRandomWalks/beast/app/seqgen/SimulatedTreeTraitMapBRW.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MyRandomWalks/beast/app/seqgen/SimulatedTreeTraitMapCRW.class" afterPath="$PROJECT_DIR$/out/production/MyRandomWalks/beast/app/seqgen/SimulatedTreeTraitMapCRW.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MyRandomWalks/beast/app/seqgen/SimulatedTreeTraitMapWithBoundaries.class" afterPath="$PROJECT_DIR$/out/production/MyRandomWalks/beast/app/seqgen/SimulatedTreeTraitMapWithBoundaries.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/testSeqGenBRWRPlot.xml" afterPath="$PROJECT_DIR$/examples/testSeqGenBRWRPlot.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/testSeqGenCRWRPlot.xml" afterPath="$PROJECT_DIR$/examples/testSeqGenCRWRPlot.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/testSeqGenSRWRPlot.xml" afterPath="$PROJECT_DIR$/examples/testSeqGenSRWRPlot.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/testSeqGenSRWWithBoundary.xml" afterPath="$PROJECT_DIR$/examples/testSeqGenSRWWithBoundary.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/testSeqGenSRWWithBoundaryRPlot.xml" afterPath="$PROJECT_DIR$/examples/testSeqGenSRWWithBoundaryRPlot.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/testSimulatedTreeTraitMap.xml" afterPath="$PROJECT_DIR$/examples/testSimulatedTreeTraitMap.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/testSimulatedTreeTraitMapBRW.xml" afterPath="$PROJECT_DIR$/examples/testSimulatedTreeTraitMapBRW.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/testSimulatedTreeTraitMapCRW.xml" afterPath="$PROJECT_DIR$/examples/testSimulatedTreeTraitMapCRW.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/testSimulatedTreeTraitMapWithBoundaries.xml" afterPath="$PROJECT_DIR$/examples/testSimulatedTreeTraitMapWithBoundaries.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/seqgenBRWRPlot.xml" afterPath="$PROJECT_DIR$/seqgenBRWRPlot.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/seqgenCRW.xml" afterPath="$PROJECT_DIR$/seqgenCRW.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/seqgenSRW.xml" afterPath="$PROJECT_DIR$/seqgenSRW.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/seqgenSRWWithBoundary.xml" afterPath="$PROJECT_DIR$/seqgenSRWWithBoundary.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/beast/app/seqgen/SeqgenSRWRPlot.java" afterPath="$PROJECT_DIR$/src/beast/app/seqgen/SeqgenSRWRPlot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMap.java" afterPath="$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapBRW.java" afterPath="$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapBRW.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapCRW.java" afterPath="$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapCRW.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapWithBoundaries.java" afterPath="$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapWithBoundaries.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testSimulatedTreeTraitMapCRW.xml.state" afterPath="$PROJECT_DIR$/testSimulatedTreeTraitMapCRW.xml.state" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beast-classic/src/beast/continuous/SampledMultivariateTraitLikelihood.java" afterPath="$PROJECT_DIR$/../beast-classic/src/beast/continuous/SampledMultivariateTraitLikelihood.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beast-classic/src/beast/evolution/alignment/AlignmentFromTraitMap.java" afterPath="$PROJECT_DIR$/../beast-classic/src/beast/evolution/alignment/AlignmentFromTraitMap.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../beast-geo/src/sphericalGeo/TreeTraitMap.java" afterPath="$PROJECT_DIR$/../beast-geo/src/sphericalGeo/TreeTraitMap.java" />
@@ -45,7 +57,9 @@
                 <provider selected="true" editor-type-id="text-editor">
                   <state vertical-scroll-proportion="0.0">
                     <caret line="279" column="16" selection-start-line="279" selection-start-column="16" selection-end-line="279" selection-end-column="16" />
-                    <folding />
+                    <folding>
+                      <element signature="imports" expanded="false" />
+                    </folding>
                   </state>
                 </provider>
               </entry>
@@ -60,14 +74,12 @@
                 </provider>
               </entry>
             </file>
-            <file leaf-file-name="SeqgenCRW.java" pinned="false" current-in-tab="true">
+            <file leaf-file-name="SeqgenCRW.java" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/beast/app/seqgen/SeqgenCRW.java">
                 <provider selected="true" editor-type-id="text-editor">
                   <state vertical-scroll-proportion="0.0">
-                    <caret line="128" column="29" selection-start-line="128" selection-start-column="29" selection-end-line="128" selection-end-column="29" />
-                    <folding>
-                      <element signature="imports" expanded="true" />
-                    </folding>
+                    <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+                    <folding />
                   </state>
                 </provider>
               </entry>
@@ -77,7 +89,9 @@
                 <provider selected="true" editor-type-id="text-editor">
                   <state vertical-scroll-proportion="0.0">
                     <caret line="260" column="76" selection-start-line="260" selection-start-column="76" selection-end-line="260" selection-end-column="76" />
-                    <folding />
+                    <folding>
+                      <element signature="imports" expanded="false" />
+                    </folding>
                   </state>
                 </provider>
               </entry>
@@ -86,7 +100,7 @@
               <entry file="file://$PROJECT_DIR$/examples/testSeqGenBRWRPlot.xml">
                 <provider selected="true" editor-type-id="text-editor">
                   <state vertical-scroll-proportion="0.0">
-                    <caret line="37" column="11" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
+                    <caret line="40" column="202" selection-start-line="40" selection-start-column="202" selection-end-line="40" selection-end-column="202" />
                     <folding />
                   </state>
                 </provider>
@@ -102,10 +116,10 @@
                 </provider>
               </entry>
             </file>
-            <file leaf-file-name="testSeqGenSRWWithBoundary.xml" pinned="false" current-in-tab="false">
+            <file leaf-file-name="testSeqGenSRWWithBoundary.xml" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/examples/testSeqGenSRWWithBoundary.xml">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.0">
+                  <state vertical-scroll-proportion="0.22990127">
                     <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
                     <folding />
                   </state>
@@ -123,11 +137,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="testSeqGenSRWRPlot.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/testSeqGenSRWRPlot.xml">
+      <file leaf-file-name="SimulatedTreeTraitMapCRW.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapCRW.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="151" selection-start-line="41" selection-start-column="151" selection-end-line="41" selection-end-column="151" />
+              <caret line="92" column="2" selection-start-line="92" selection-start-column="2" selection-end-line="92" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -136,28 +150,8 @@
       <file leaf-file-name="testSimulatedTreeTraitMapCRW.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/testSimulatedTreeTraitMapCRW.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimulatedTreeTraitMapCRW.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapCRW.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="73" column="25" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testSimulatedTreeTraitMapWithBoundaries.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/examples/testSimulatedTreeTraitMapWithBoundaries.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.25872093">
-              <caret line="149" column="25" selection-start-line="149" selection-start-column="25" selection-end-line="149" selection-end-column="25" />
+            <state vertical-scroll-proportion="-4.2083335">
+              <caret line="235" column="0" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -167,17 +161,17 @@
         <entry file="file://$PROJECT_DIR$/examples/testSeqGenSRWWithBoundaryRPlot.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+              <caret line="28" column="254" selection-start-line="28" selection-start-column="254" selection-end-line="28" selection-end-column="254" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimulatedTreeTraitMap.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMap.java">
+      <file leaf-file-name="BeastMain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../beast2/src/beast/app/beastapp/BeastMain.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="69" column="53" selection-start-line="69" selection-start-column="53" selection-end-line="69" selection-end-column="53" />
+              <caret line="252" column="58" selection-start-line="252" selection-start-column="52" selection-end-line="252" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -187,10 +181,18 @@
         <entry file="file://$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapWithBoundaries.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="79" column="10" selection-start-line="79" selection-start-column="10" selection-end-line="79" selection-end-column="10" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="106" column="2" selection-start-line="106" selection-start-column="2" selection-end-line="106" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="testSimulatedTreeTraitMapWithBoundaries.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/examples/testSimulatedTreeTraitMapWithBoundaries.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.59195405">
+              <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -199,10 +201,8 @@
         <entry file="file://$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapBRW.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="99" column="19" selection-start-line="99" selection-start-column="19" selection-end-line="99" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="102" column="2" selection-start-line="102" selection-start-column="2" selection-end-line="102" selection-end-column="2" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -210,8 +210,8 @@
       <file leaf-file-name="testSimulatedTreeTraitMapBRW.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/testSimulatedTreeTraitMapBRW.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="128" column="117" selection-start-line="128" selection-start-column="117" selection-end-line="128" selection-end-column="117" />
+            <state vertical-scroll-proportion="-9.208333">
+              <caret line="242" column="82" selection-start-line="242" selection-start-column="82" selection-end-line="242" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -265,19 +265,21 @@
         <option value="$PROJECT_DIR$/../beast2/src/beast/evolution/substitutionmodel/SubstitutionModel.java" />
         <option value="$PROJECT_DIR$/src/beast/app/seqgen/TTMtest.java" />
         <option value="$PROJECT_DIR$/src/beast/app/seqgen/SeqgenSRWRPlot.java" />
-        <option value="$PROJECT_DIR$/examples/testSeqGenCRWRPlot.xml" />
-        <option value="$PROJECT_DIR$/examples/testSeqGenBRWRPlot.xml" />
         <option value="$PROJECT_DIR$/examples/testSeqGenSRWWithBoundary.xml" />
-        <option value="$PROJECT_DIR$/examples/testSeqGenSRWWithBoundaryRPlot.xml" />
-        <option value="$PROJECT_DIR$/examples/testSimulatedTreeTraitMap.xml" />
         <option value="$PROJECT_DIR$/src/beast/app/seqgen/SeqgenCRW.java" />
         <option value="$PROJECT_DIR$/src/beast/app/seqgen/testSimulatedTreeTraitMapCRW.xml" />
+        <option value="$PROJECT_DIR$/examples/testSimulatedTreeTraitMapSeqgen.xml" />
         <option value="$PROJECT_DIR$/examples/testSeqGenSRWRPlot.xml" />
-        <option value="$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapWithBoundaries.java" />
-        <option value="$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapCRW.java" />
+        <option value="$PROJECT_DIR$/examples/testSeqGenCRWRPlot.xml" />
+        <option value="$PROJECT_DIR$/examples/testSeqGenBRWRPlot.xml" />
+        <option value="$PROJECT_DIR$/examples/testSeqGenSRWWithBoundaryRPlot.xml" />
         <option value="$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMap.java" />
-        <option value="$PROJECT_DIR$/examples/testSimulatedTreeTraitMapBRW.xml" />
+        <option value="$PROJECT_DIR$/examples/testSimulatedTreeTraitMap.xml" />
         <option value="$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapBRW.java" />
+        <option value="$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapCRW.java" />
+        <option value="$PROJECT_DIR$/examples/testSimulatedTreeTraitMapCRW.xml" />
+        <option value="$PROJECT_DIR$/examples/testSimulatedTreeTraitMapBRW.xml" />
+        <option value="$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapWithBoundaries.java" />
         <option value="$PROJECT_DIR$/examples/testSimulatedTreeTraitMapWithBoundaries.xml" />
       </list>
     </option>
@@ -293,9 +295,9 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="19" />
-    <option name="y" value="23" />
-    <option name="width" value="1253" />
+    <option name="x" value="483" />
+    <option name="y" value="49" />
+    <option name="width" value="960" />
     <option name="height" value="873" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -323,6 +325,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -391,6 +394,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="out" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyRandomWalks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyRandomWalks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="out" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="artifacts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyRandomWalks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyRandomWalks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="examples" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -402,38 +437,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="beast-geo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyRandomWalks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beast-geo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyRandomWalks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beast-geo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sphericalGeo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -622,32 +625,6 @@
               <option name="myItemId" value="evolution" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tree" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MyRandomWalks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beast2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="beast" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="evolution" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -739,9 +716,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -752,14 +728,14 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../beast-classic/lib" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/out/artifacts/MyRandomWalks_jar" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.3112745" />
     <property name="options.lastSelected" value="vcs.Git" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="traitmap&#9;FILE&#9;file:///Users/williamhsu/Documents/workspace/MyRandomWalks/src/beast/app/seqgen/SimulatedTreeTraitMap.java&#10;MCMC&#9;PSI&#9;JAVA://beast.core.MCMC&#10;SampledMultivariateTraitLikelihood&#9;FILE&#9;file:///Users/williamhsu/Documents/workspace/beast-classic/src/beast/continuous/SampledMultivariateTraitLikelihood.java&#10;AbstractMultivariateTraitLikelihood&#9;PSI&#9;JAVA://beast.continuous.AbstractMultivariateTraitLikelihood&#10;random&#9;FILE&#9;file:///Users/williamhsu/Documents/workspace/beast2/src/beast/evolution/tree/RandomTree.java&#10;tree&#9;FILE&#9;file:///Users/williamhsu/Documents/workspace/beast2/src/beast/evolution/tree/Tree.java&#10;randomtr&#9;PSI&#9;JAVA://beast.evolution.tree.RandomTree&#10;AlignmentFr&#9;FILE&#9;file:///Users/williamhsu/Documents/workspace/beast-geo/src/sphericalGeo/AlignmentFromTraitMap.java&#10;Sampled&#9;FILE&#9;file:///Users/williamhsu/Documents/workspace/beast-classic/src/beast/continuous/SampledMultivariateTraitLikelihood.java&#10;AlignmentFromTra&#9;PSI&#9;JAVA://sphericalGeo.AlignmentFromTraitMap&#10;SampleMultivariateTraitLikelihood&#9;null&#9;null&#10;sampleMultivariateTraitLikelihood&#9;null&#9;null&#10;MultivariateNormaldis&#9;PSI&#9;JAVA://org.apache.commons.math3.distribution.MultivariateNormalDistribution" />
+    <property name="SearchEverywhereHistoryKey" value="beastMain&#9;FILE&#9;file:///Users/williamhsu/Documents/workspace/beast2/src/beast/app/beastapp/BeastMain.java&#10;traitmap&#9;FILE&#9;file:///Users/williamhsu/Documents/workspace/MyRandomWalks/src/beast/app/seqgen/SimulatedTreeTraitMap.java&#10;MCMC&#9;PSI&#9;JAVA://beast.core.MCMC&#10;SampledMultivariateTraitLikelihood&#9;FILE&#9;file:///Users/williamhsu/Documents/workspace/beast-classic/src/beast/continuous/SampledMultivariateTraitLikelihood.java&#10;AbstractMultivariateTraitLikelihood&#9;PSI&#9;JAVA://beast.continuous.AbstractMultivariateTraitLikelihood&#10;random&#9;FILE&#9;file:///Users/williamhsu/Documents/workspace/beast2/src/beast/evolution/tree/RandomTree.java&#10;tree&#9;FILE&#9;file:///Users/williamhsu/Documents/workspace/beast2/src/beast/evolution/tree/Tree.java&#10;randomtr&#9;PSI&#9;JAVA://beast.evolution.tree.RandomTree&#10;AlignmentFr&#9;FILE&#9;file:///Users/williamhsu/Documents/workspace/beast-geo/src/sphericalGeo/AlignmentFromTraitMap.java&#10;Sampled&#9;FILE&#9;file:///Users/williamhsu/Documents/workspace/beast-classic/src/beast/continuous/SampledMultivariateTraitLikelihood.java&#10;AlignmentFromTra&#9;PSI&#9;JAVA://sphericalGeo.AlignmentFromTraitMap&#10;SampleMultivariateTraitLikelihood&#9;null&#9;null&#10;sampleMultivariateTraitLikelihood&#9;null&#9;null&#10;MultivariateNormaldis&#9;PSI&#9;JAVA://org.apache.commons.math3.distribution.MultivariateNormalDistribution" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
@@ -1115,33 +1091,33 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="19" y="23" width="1253" height="873" extended-state="0" />
-    <editor active="false" />
+    <frame x="483" y="49" width="960" height="873" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4212548" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945454" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40332907" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3311313" sideWeight="0.83610755" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28431374" sideWeight="0.83610755" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24956064" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3311313" sideWeight="0.16389245" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43277848" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4212548" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41485274" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43277848" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1157,10 +1133,10 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945454" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41485274" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40332907" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3311313" sideWeight="0.83610755" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28540304" sideWeight="0.83610755" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24956064" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1250,6 +1226,12 @@
           <properties />
           <option name="timeStamp" value="50" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMap.java</url>
+          <line>65</line>
+          <properties />
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/beast/app/seqgen/SeqgenCRW.java</url>
           <line>81</line>
@@ -1263,7 +1245,7 @@
           <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="51" />
+      <option name="time" value="52" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1272,20 +1254,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/examples/testSimulatedAlignmentTTM.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.0">
-          <caret line="34" column="47" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../beast2/src/beast/util/XMLParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="359" column="0" selection-start-line="359" selection-start-column="0" selection-end-line="359" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../beast2/src/beast/util/MersenneTwisterFast.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1486,19 +1454,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/testSeqGenCRWRPlot.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="51" selection-start-line="9" selection-start-column="51" selection-end-line="9" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/testSeqGenSRW.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.375">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="116" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1516,34 +1475,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/testSimulatedTreeTraitMap.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.625">
-          <caret line="9" column="45" selection-start-line="0" selection-start-column="0" selection-end-line="247" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/testSeqGenSRWRPlot.xml">
+    <entry file="file://$PROJECT_DIR$/examples/testSeqGenCRWRPlot.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="151" selection-start-line="41" selection-start-column="151" selection-end-line="41" selection-end-column="151" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/testSimulatedTreeTraitMapCRW.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapCRW.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="73" column="25" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
+          <caret line="33" column="42" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -1551,43 +1486,23 @@
     <entry file="file://$PROJECT_DIR$/examples/testSeqGenSRWWithBoundaryRPlot.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+          <caret line="28" column="254" selection-start-line="28" selection-start-column="254" selection-end-line="28" selection-end-column="254" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMap.java">
+    <entry file="file://$PROJECT_DIR$/../beast2/src/beast/app/beastapp/BeastMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="69" column="53" selection-start-line="69" selection-start-column="53" selection-end-line="69" selection-end-column="53" />
+          <caret line="252" column="58" selection-start-line="252" selection-start-column="52" selection-end-line="252" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapWithBoundaries.java">
+    <entry file="file://$PROJECT_DIR$/examples/testSimulatedTreeTraitMapSeqgen.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="79" column="10" selection-start-line="79" selection-start-column="10" selection-end-line="79" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapBRW.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="99" column="19" selection-start-line="99" selection-start-column="19" selection-end-line="99" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/testSimulatedTreeTraitMapBRW.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="128" column="117" selection-start-line="128" selection-start-column="117" selection-end-line="128" selection-end-column="117" />
+          <caret line="163" column="113" selection-start-line="163" selection-start-column="113" selection-end-line="163" selection-end-column="113" />
           <folding />
         </state>
       </provider>
@@ -1596,7 +1511,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="279" column="16" selection-start-line="279" selection-start-column="16" selection-end-line="279" selection-end-column="16" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1611,10 +1528,8 @@
     <entry file="file://$PROJECT_DIR$/src/beast/app/seqgen/SeqgenCRW.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="128" column="29" selection-start-line="128" selection-start-column="29" selection-end-line="128" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1622,14 +1537,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="260" column="76" selection-start-line="260" selection-start-column="76" selection-end-line="260" selection-end-column="76" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/testSeqGenBRWRPlot.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="11" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
+          <caret line="40" column="202" selection-start-line="40" selection-start-column="202" selection-end-line="40" selection-end-column="202" />
           <folding />
         </state>
       </provider>
@@ -1644,16 +1561,80 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/testSeqGenSRWWithBoundary.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.22990127">
           <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/testSeqGenSRWRPlot.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.541667">
+          <caret line="54" column="20" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapBRW.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="102" column="2" selection-start-line="102" selection-start-column="2" selection-end-line="102" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapCRW.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="92" column="2" selection-start-line="92" selection-start-column="2" selection-end-line="92" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMapWithBoundaries.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="106" column="2" selection-start-line="106" selection-start-column="2" selection-end-line="106" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/testSimulatedTreeTraitMapBRW.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.208333">
+          <caret line="242" column="82" selection-start-line="242" selection-start-column="82" selection-end-line="242" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/testSimulatedTreeTraitMapCRW.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.2083335">
+          <caret line="235" column="0" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/beast/app/seqgen/SimulatedTreeTraitMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7058824">
+          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/testSimulatedTreeTraitMap.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7151899">
+          <caret line="247" column="0" selection-start-line="247" selection-start-column="0" selection-end-line="247" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/testSimulatedTreeTraitMapWithBoundaries.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25872093">
-          <caret line="149" column="25" selection-start-line="149" selection-start-column="25" selection-end-line="149" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.59195405">
+          <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -1664,10 +1645,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>MyRandomWalks:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.3439575" />
+                <option value="0.3112745" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

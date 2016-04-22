@@ -136,7 +136,7 @@
         <!-- The HKY substitution model (Hasegawa, Kishino & Yano, 1985)             -->
     </data>
     <run id="mcmc" spec="MCMC" chainLength="10000000">
-        <state id="state" storeEvery="5000">
+        <state id="state" storeEvery="0">
             <parameter id="precisionMatrix.s:location" dimension="4" minordimension="2" name="stateNode">
                 0.365 -1.78E-4 -1.78E-4 0.0516
             </parameter>
@@ -220,7 +220,7 @@
                     </operator>
         -->
 
-        <logger id="tracelog" fileName="BRWttm.log" logEvery="20000" model="@posterior" sanitiseHeaders="true" sort="smart">
+        <logger id="tracelog" fileName="BRWttm.$(seed).log" logEvery="20000" model="@posterior" sanitiseHeaders="true" sort="smart">
             <log idref="posterior"/>
             <log idref="likelihood"/>
 
@@ -240,7 +240,7 @@
             <log idref="likelihood"/>
         </logger>
 
-        <logger id="treelog.t:BRWttm" fileName="$(tree).trees" logEvery="1000" mode="tree">
+        <logger id="treelog.t:BRWttm" fileName="BRWtree.$(seed).trees" logEvery="100000000" mode="tree">
             <log id="TreeWithMetaDataLogger.t:ttm" spec="beast.evolution.tree.TreeWithMetaDataLogger" branchratemodel="@ExponentialRelaxedClock.c:location" tree="@tree"/>
         </logger>
     </run>

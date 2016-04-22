@@ -1,0 +1,247 @@
+<beast version='2.0'
+       namespace='beast.core:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc
+           :beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel
+           :beast.evolution.likelihood:beast.evolution.alignment'>
+
+    <!--data id="alignment" dataType="nucleotide">
+         <sequence taxon="t0">?</sequence>
+        <sequence taxon="t1">?</sequence>
+        <sequence taxon="t2">?</sequence>
+        <sequence taxon="t3">?</sequence>
+        <sequence taxon="t4">?</sequence>
+        <sequence taxon="t5">?</sequence>
+    </data-->
+    <tree estimate="false" id="tree" spec="beast.evolution.tree.RandomTree">
+        <taxonset spec="TaxonSet">
+            <taxon id="t0" spec="Taxon"/>
+            <taxon id="t1" spec="Taxon"/>
+            <taxon id="t2" spec="Taxon"/>
+            <taxon id="t3" spec="Taxon"/>
+            <taxon id="t4" spec="Taxon"/>
+            <taxon id="t5" spec="Taxon"/>
+            <taxon id="t6" spec="Taxon"/>
+            <taxon id="t7" spec="Taxon"/>
+            <taxon id="t8" spec="Taxon"/>
+            <taxon id="t9" spec="Taxon"/>
+            <taxon id="t10" spec="Taxon"/>
+            <taxon id="t11" spec="Taxon"/>
+            <taxon id="t12" spec="Taxon"/>
+            <taxon id="t13" spec="Taxon"/>
+            <taxon id="t14" spec="Taxon"/>
+            <taxon id="t15" spec="Taxon"/>
+            <taxon id="t16" spec="Taxon"/>
+            <taxon id="t17" spec="Taxon"/>
+            <taxon id="t18" spec="Taxon"/>
+            <taxon id="t19" spec="Taxon"/>
+            <taxon id="t20" spec="Taxon"/>
+            <taxon id="t21" spec="Taxon"/>
+            <taxon id="t22" spec="Taxon"/>
+            <taxon id="t23" spec="Taxon"/>
+            <taxon id="t24" spec="Taxon"/>
+            <taxon id="t25" spec="Taxon"/>
+            <taxon id="t26" spec="Taxon"/>
+            <taxon id="t27" spec="Taxon"/>
+            <taxon id="t28" spec="Taxon"/>
+            <taxon id="t29" spec="Taxon"/>
+            <taxon id="t30" spec="Taxon"/>
+            <taxon id="t31" spec="Taxon"/>
+            <taxon id="t32" spec="Taxon"/>
+            <taxon id="t33" spec="Taxon"/>
+            <taxon id="t34" spec="Taxon"/>
+            <taxon id="t35" spec="Taxon"/>
+            <taxon id="t36" spec="Taxon"/>
+            <taxon id="t37" spec="Taxon"/>
+            <taxon id="t38" spec="Taxon"/>
+            <taxon id="t39" spec="Taxon"/>
+            <taxon id="t40" spec="Taxon"/>
+            <taxon id="t41" spec="Taxon"/>
+            <taxon id="t42" spec="Taxon"/>
+            <taxon id="t43" spec="Taxon"/>
+            <taxon id="t44" spec="Taxon"/>
+            <taxon id="t45" spec="Taxon"/>
+            <taxon id="t46" spec="Taxon"/>
+            <taxon id="t47" spec="Taxon"/>
+            <taxon id="t48" spec="Taxon"/>
+            <taxon id="t49" spec="Taxon"/>
+            <taxon id="t50" spec="Taxon"/>
+            <taxon id="t51" spec="Taxon"/>
+            <taxon id="t52" spec="Taxon"/>
+            <taxon id="t53" spec="Taxon"/>
+            <taxon id="t54" spec="Taxon"/>
+            <taxon id="t55" spec="Taxon"/>
+            <taxon id="t56" spec="Taxon"/>
+            <taxon id="t57" spec="Taxon"/>
+            <taxon id="t58" spec="Taxon"/>
+            <taxon id="t59" spec="Taxon"/>
+            <taxon id="t60" spec="Taxon"/>
+            <taxon id="t61" spec="Taxon"/>
+            <taxon id="t62" spec="Taxon"/>
+            <taxon id="t63" spec="Taxon"/>
+            <taxon id="t64" spec="Taxon"/>
+            <taxon id="t65" spec="Taxon"/>
+            <taxon id="t66" spec="Taxon"/>
+            <taxon id="t67" spec="Taxon"/>
+            <taxon id="t68" spec="Taxon"/>
+            <taxon id="t69" spec="Taxon"/>
+            <taxon id="t70" spec="Taxon"/>
+            <taxon id="t71" spec="Taxon"/>
+            <taxon id="t72" spec="Taxon"/>
+            <taxon id="t73" spec="Taxon"/>
+            <taxon id="t74" spec="Taxon"/>
+            <taxon id="t75" spec="Taxon"/>
+            <taxon id="t76" spec="Taxon"/>
+            <taxon id="t77" spec="Taxon"/>
+            <taxon id="t78" spec="Taxon"/>
+            <taxon id="t79" spec="Taxon"/>
+            <taxon id="t80" spec="Taxon"/>
+            <taxon id="t81" spec="Taxon"/>
+            <taxon id="t82" spec="Taxon"/>
+            <taxon id="t83" spec="Taxon"/>
+            <taxon id="t84" spec="Taxon"/>
+            <taxon id="t85" spec="Taxon"/>
+            <taxon id="t86" spec="Taxon"/>
+            <taxon id="t87" spec="Taxon"/>
+            <taxon id="t88" spec="Taxon"/>
+            <taxon id="t89" spec="Taxon"/>
+            <taxon id="t90" spec="Taxon"/>
+            <taxon id="t91" spec="Taxon"/>
+            <taxon id="t92" spec="Taxon"/>
+            <taxon id="t93" spec="Taxon"/>
+            <taxon id="t94" spec="Taxon"/>
+            <taxon id="t95" spec="Taxon"/>
+            <taxon id="t96" spec="Taxon"/>
+            <taxon id="t97" spec="Taxon"/>
+            <taxon id="t98" spec="Taxon"/>
+            <taxon id="t99" spec="Taxon"/>
+        </taxonset>
+        <populationModel id="ConstantPopulation" spec="ConstantPopulation">
+            <parameter id="randomPopSize" name="popSize">100.0</parameter>
+            <!--popsize set to the number of taxons-->
+        </populationModel>
+    </tree>
+
+    <!-- initialise random tree using alignment-->
+
+    <parameter id="location.location" dimension="22" minordimension="2" name="stateNode" >0.0</parameter>
+
+    <!-- The simulated TreeTraitMap. -->
+    <data spec="beast.app.seqgen.SimulatedTreeTraitMap" id="ttm" tree='@tree' parameter='@location.location' randomizelower="-90 -180" randomizeupper="90 180"
+          traitName='location' timeStep='0.01' spatialStep='0.01'>
+        <!--
+            <arg spec='beast.app.seqgen.SimulatedTreeTraitMap' id="treetraitmap"
+                 tree="@tree"
+                 traitName="location">
+            </arg>
+        -->
+        <!-- The HKY substitution model (Hasegawa, Kishino & Yano, 1985)             -->
+    </data>
+    <run id="mcmc" spec="MCMC" chainLength="10000000">
+        <state id="state"  storeEvery="0">
+            <parameter id="precisionMatrix.s:location" dimension="4" minordimension="2" name="stateNode">
+                0.365 -1.78E-4 -1.78E-4 0.0516
+            </parameter>
+            <parameter id="ucedMean.c:location" name="stateNode">1.0</parameter>
+            <stateNode id="expRateCategories.c:location" spec="parameter.IntegerParameter" dimension="11">1</stateNode>
+            <stateNode idref="location.location"/>
+            <stateNode idref="tree"/>
+        </state>
+
+        <distribution id="posterior" spec="util.CompoundDistribution">
+            <!-- added-->
+            <distribution id="prior" spec="util.CompoundDistribution">
+
+
+                <distribution id="rootPrior.location" spec="beast.math.distributions.MultivariateNormalDistribution">
+                    <parameter id="RealParameter.02" dimension="2" name="mean">0.0 0.0</parameter>
+                    <parameter id="RealParameter.03" dimension="4" minordimension="2" name="precision">0.001 0.0 0.0 0.001</parameter>
+                    <arg id="rootTrait.location" spec="beast.evolution.tree.RootTrait">
+                        <traitmap idref="ttm"/>
+                    </arg>
+                </distribution>
+                <!--added
+                            <prior spec="" id="UCMeanRatePrior.c:location" name="distribution" x="@ucedMean.c:location">
+                                <Exponential spec="beast.math.distributions.Exponential" id="Exponential.0" name="distr">
+                                    <parameter id="RealParameter.04" estimate="false" name="mean">1.0</parameter>
+                                </Exponential>
+                            </prior>                  -->
+            </distribution>
+
+            <distribution id="likelihood" spec="util.CompoundDistribution">
+
+                <distribution id="locationtreeLikelihood.location" spec="beast.continuous.SampledMultivariateTraitLikelihood"
+                              reciprocalRates="true" scaleByTime="true" traitParameter="@location.location" tree="@tree" useTreeLength="true">
+                    <data id="location"
+                          spec="AlignmentFromTraitMap"
+                          traitMap="@ttm">
+                        <userDataType id="LocationDataType.0" spec="beast.evolution.datatype.LocationDataType"/>
+                    </data>
+                    <siteModel id="geoContSiteModel.s:location" spec="SiteModel">
+                        <substModel id="diffusionModel.s:location" spec="beast.continuous.MultivariateDiffusionModel"
+                                    precisionMatrix="@precisionMatrix.s:location"/>
+                    </siteModel>
+                    <branchRateModel id="ExponentialRelaxedClock.c:location" spec="beast.evolution.branchratemodel.UCRelaxedClockModel"
+                                     clock.rate="@ucedMean.c:location" rateCategories="@expRateCategories.c:location" tree="@tree">
+                        <distr id="Exponential.c:location" spec="beast.math.distributions.Exponential">
+                            <mean spec="beast.core.parameter.RealParameter" id="UCExpLambda.c:location">1.0</mean>
+                        </distr>
+                    </branchRateModel>
+                </distribution>
+            </distribution>
+        </distribution>
+
+        <operator id="precisionGibbsOperator.s:location" spec="PrecisionMatrixGibbsOperator"
+                  likelihood="@locationtreeLikelihood.location" parameter="@precisionMatrix.s:location"
+                  traitmap="@ttm" tree="@tree" weight="15.0">
+            <prior id="precisionPrior.location" spec="beast.math.distributions.WishartDistribution"
+                   arg="@precisionMatrix.s:location" df="2.0">
+                <parameter id="RealParameter.05" dimension="4" minordimension="2" name="scaleMatrix">1.0 0.0 0.0 1.0</parameter>
+            </prior>
+        </operator>
+
+        <operator id="traitGibbsOperator.location" spec="TraitGibbsOperator" likelihood="@locationtreeLikelihood.location"
+                  precisionMatrix="@precisionMatrix.s:location" traitmap="@ttm" tree="@tree" weight="50.0"/>
+
+        <operator id="RootTraitRandowWalkOperator.location" spec="RootTraitRandowWalkOperator" parameter="@location.location"
+                  traitmap="@ttm" weight="5.0" windowSize="10.0"/>
+
+        <operator id="ucedMeanScaler.c:location" spec="ScaleOperator" parameter="@ucedMean.c:location" scaleFactor="0.5" weight="1.0"/>
+
+        <operator id="ExpCategoriesRandomWalk.c:location" spec="IntRandomWalkOperator"
+                  parameter="@expRateCategories.c:location" weight="10.0" windowSize="1"/>
+
+        <operator id="ExpCategoriesSwapOperator.c:location" spec="SwapOperator"
+                  intparameter="@expRateCategories.c:location" weight="10.0"/>
+
+        <operator id="ExpCategoriesUniform.c:location" spec="UniformOperator" parameter="@expRateCategories.c:location" weight="10.0"/>
+        <!-- this will change the tree
+                    <operator id="relaxedUpDownOperatorExp.c:location" spec="UpDownOperator" scaleFactor="0.75" weight="3.0">
+                        <up idref="ucedMean.c:location"/>
+                        <down idref="Tree.t:tree"/>
+                    </operator>
+        -->
+
+        <logger id="tracelog" fileName="ttm.$(seed).log" logEvery="20000" model="@posterior" sanitiseHeaders="true" sort="smart">
+            <log idref="posterior"/>
+            <log idref="likelihood"/>
+
+            <log idref="location.location"/>
+
+            <log idref="locationtreeLikelihood.location"/>
+            <log idref="precisionMatrix.s:location"/>
+            <log id="rateStat.location" spec="beast.evolution.branchratemodel.RateStatistic" tree="@tree" treeLikelihood="@locationtreeLikelihood.location"/>
+            <log idref="rootTrait.location"/>
+            <log idref="ucedMean.c:location"/>
+            <!--log id="rateStat.c:location" spec="beast.evolution.branchratemodel.RateStatistic" branchratemodel="@ExponentialRelaxedClock.c:location" tree="@tree"/-->
+        </logger>
+
+        <logger id="screenlog" logEvery="1000">
+            <log idref="posterior"/>
+            <log id="ESS.0" spec="util.ESS" arg="@posterior"/>
+            <log idref="likelihood"/>
+        </logger>
+
+        <logger id="treelog.t:ttm" fileName="tree.$(seed).trees" logEvery="1000" mode="tree">
+            <log id="TreeWithMetaDataLogger.t:ttm" spec="beast.evolution.tree.TreeWithMetaDataLogger" branchratemodel="@ExponentialRelaxedClock.c:location" tree="@tree"/>
+        </logger>
+    </run>
+</beast>
