@@ -1,0 +1,18 @@
+<itsabeastystatewerein version='2.0' sample='10000000'>
+<statenode id='precisionMatrix.s:location'>precisionMatrix.s:location[4 2] (-Infinity,Infinity): 0.03325130347025765 0.02687986270208153 0.02687986270208153 0.14221684661365194 </statenode>
+<statenode id='ucedMean.c:location'>ucedMean.c:location[1 1] (-Infinity,Infinity): 0.25903659155261766 </statenode>
+<statenode id='expRateCategories.c:location'>expRateCategories.c:location[8 1] (0,7): 5 0 1 5 7 5 5 6 </statenode>
+<statenode id='location.location'>location.location[18 2] (-Infinity,Infinity): 6.616761 7.899907 7.001854 0.152245 8.774219 8.292177 3.743403 5.378317 3.375182 6.679017 5.284505280891439 7.2418140343171915 6.355141691574377 5.760941369992213 6.097447582694884 6.414212165768659 4.309419162407685 5.840712487077037 </statenode>
+<statenode id='tree'>(((0:2.2469000000000135E-4,2:2.2469000000000135E-4)5:6.503499999999992E-4,(1:5.481800000000005E-4,3:5.481800000000005E-4)6:3.2686E-4)7:0.00912496,4:0.01)8:0.0</statenode>
+</itsabeastystatewerein>
+<!--
+{"operators":[
+{"id":"precisionGibbsOperator.s:location","p":"NaN","accept":1484502,"reject":0,"acceptFC":1459557,"rejectFC":0,"rejectIv":0,"rejectOp":0},
+{"id":"traitGibbsOperator.location","p":"NaN","accept":4951530,"reject":0,"acceptFC":4868643,"rejectFC":0,"rejectIv":0,"rejectOp":0},
+{"id":"RootTraitRandowWalkOperator.location","p":54412.06368906891,"accept":454743,"reject":39522,"acceptFC":447103,"rejectFC":38853,"rejectIv":0,"rejectOp":0},
+{"id":"ucedMeanScaler.c:location","p":0.23217156838581607,"accept":26721,"reject":72647,"acceptFC":25765,"rejectFC":71910,"rejectIv":0,"rejectOp":0},
+{"id":"ExpCategoriesRandomWalk.c:location","p":"NaN","accept":430607,"reject":559187,"acceptFC":423302,"rejectFC":549984,"rejectIv":431465,"rejectOp":431465},
+{"id":"ExpCategoriesSwapOperator.c:location","p":"NaN","accept":438733,"reject":551693,"acceptFC":431283,"rejectFC":542630,"rejectIv":0,"rejectOp":0},
+{"id":"ExpCategoriesUniform.c:location","p":"NaN","accept":552880,"reject":437236,"acceptFC":543540,"rejectFC":430118,"rejectIv":0,"rejectOp":0}
+]}
+-->
