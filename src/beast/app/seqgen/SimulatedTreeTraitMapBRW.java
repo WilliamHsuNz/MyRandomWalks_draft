@@ -21,20 +21,25 @@ import beast.util.XMLProducer;
 //import sphericalGeo.TreeTraitMap;
 
 /**
- * Created by williamhsu on 18/03/16.
+ * Created by William Hsu on 18/03/16.
+ * This Programme extends on The TreeTraitMap Class from the beast-classic package.
+ * The programme simulates Bias Random Walk down a phylogenetic tree and
+ * maps geographical location traits to the nodes of the tree.  The programme then
+ * performs MCMC sampliing method to infer the location of the root from the locations
+ * of the leaves.
+ *
+ * The programme is run through the main method at beast.app.beastapp.BeastMain
+ * The programme takes examples/testSimulatedTreeTraitMapBRW.xml as input arguement
  */
 @Description("Traits containing location data generated using " +
         "simple isotropic random walk are mapped onto a given tree.")
 public class SimulatedTreeTraitMapBRW extends TreeTraitMap {
 
-    //final public Input<TreeTraitMap> m_dataInput = new Input<>("data", "trait data which specifies... ", Validate.REQUIRED);
-    //final public Input<Tree>m_treeInput = new Input<Tree>("tree", "phylogenetic beast.tree with sequence data in the leafs", Validate.REQUIRED);
     final public Input<String>m_traitNameInput = new Input<String>("traitName", "Name of trait to be map onto the tree");
     final public Input<Double>m_timeStepInput = new Input<Double>("timeStep", "time step between moves(default 0.01).", 0.01);
     final public Input<Double >m_spatialStepInput = new Input<Double>("spatialStep", "spatial step of move(default 0.01).", 0.01);
     public Input<Double> m_clockwiseProbInput = new Input<Double>("clockwiseProb", "probability of turning clock wise(default 0.5)", 0.4);
     public Input<Double> m_counterClockwiseProbInput = new Input<Double>("counterClockwiseProb", "probability of turning counter-clockwise(default 0.5)", 0.5);
-
 
     TreeInterface tree;
     RealParameter rP;
@@ -65,7 +70,6 @@ public class SimulatedTreeTraitMapBRW extends TreeTraitMap {
 
         if (!(tree instanceof Tree))
             throw new IllegalArgumentException("Tree input must be a true Tree, not just TreeInterface.");
-        //makeRootLocation((Tree)tree);//this needs to be a Tree object it is currently a tree interface
         Node root = tree.getRoot();
         double [] rootLocation = {0.0, 0.0};
         taxonLocations = new double[tree.getNodeCount()][2];
@@ -87,20 +91,7 @@ public class SimulatedTreeTraitMapBRW extends TreeTraitMap {
         setInputValue("value", value);
         super.initAndValidate();
     }
-/*
-    private void makeRootLocation(Tree tree){
-        Node root = tree.getRoot();
-        System.out.println("Tree Height: " + root.getHeight());
 
-        double [] rootLocation = {0.0, 0.0};
-
-        taxonLocations = new double [tree.getNodeCount()][2];
-        taxonLocations[root.getNr()] = rootLocation;
-
-        //double angle = 0.0;
-        BRW(root);
-    }
-*/
     private void BRW(Node root){
         double rootHeight = root.getHeight();
         Node leftChild = root.getLeft();

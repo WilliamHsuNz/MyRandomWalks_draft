@@ -1,7 +1,6 @@
 package beast.app.seqgen;
 
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
+import java.io.*;
 
 import beast.core.Description;
 import beast.core.Input;
@@ -24,18 +23,23 @@ import sim.util.distribution.VonMises;
 
 /**
  * Created by williamhsu on 18/03/16.
+ * This Programme extends on The TreeTraitMap Class from the beast-classic package.
+ * The programme simulates Correlated Random Walk down a phylogenetic tree and
+ * maps geographical location traits to the nodes of the tree.  The programme then
+ * performs MCMC sampliing method to infer the location of the root from the locations
+ * of the leaves.
+ *
+ * The programme can is run through the main method at beast.app.beastapp.BeastMain
+ * The programme takes examples/testSimulatedTreeTraitMapCRW.xml as input arguement
  */
 @Description("Traits containing location data generated using " +
         "simple isotropic random walk are mapped onto a given tree.")
 public class SimulatedTreeTraitMapCRW extends TreeTraitMap {
 
-    //final public Input<TreeTraitMap> m_dataInput = new Input<>("data", "trait data which specifies... ", Validate.REQUIRED);
-    //final public Input<Tree>m_treeInput = new Input<Tree>("tree", "phylogenetic beast.tree with sequence data in the leafs", Validate.REQUIRED);
     final public Input<String>m_traitNameInput = new Input<String>("traitName", "Name of trait to be map onto the tree");
     final public Input<Double>m_timeStepInput = new Input<Double>("timeStep", "time step between moves(default 0.01).", 0.01);
     final public Input<Double >m_spatialStepInput = new Input<Double>("spatialStep", "spatial step of move(default 0.01).", 0.01);
     public Input<Double> m_kInput = new Input<Double>("k", "parameter for Von Mises Distribution (default 1.0).", 1.0);
-
 
     TreeInterface tree;
     RealParameter rP;
@@ -48,7 +52,6 @@ public class SimulatedTreeTraitMapCRW extends TreeTraitMap {
     String value;
     double m_k;
     VonMises vm;
-
 
     double clockwiseCouterClockwise;
 
@@ -74,8 +77,8 @@ public class SimulatedTreeTraitMapCRW extends TreeTraitMap {
         taxonLocations = new double[tree.getNodeCount()][2];
         taxonLocations[root.getNr()] = rootLocation;
         double angle = 0.0;
+
         CRW(root, angle);
-       // makeRootLocation((Tree)tree);//this needs to be a Tree object it is currently a tree interface
         value = "";
         numberOfLeaves = tree.getLeafNodeCount();
         for (int i = 0; i < numberOfLeaves; i++) {
@@ -90,20 +93,7 @@ public class SimulatedTreeTraitMapCRW extends TreeTraitMap {
         setInputValue("value", value);
         super.initAndValidate();
     }
-/*
-    private void makeRootLocation(Tree tree){
-        Node root = tree.getRoot();
-        System.out.println("Tree Height: " + root.getHeight());
 
-        double [] rootLocation = {0.0, 0.0};
-
-        taxonLocations = new double [tree.getNodeCount()][2];
-        taxonLocations[root.getNr()] = rootLocation;
-
-        double angle = 0.0;
-        CRW(root, angle);
-    }
-*/
     private void CRW(Node root, double angle){
         double rootHeight = root.getHeight();
         Node leftChild = root.getLeft();
@@ -124,31 +114,39 @@ public class SimulatedTreeTraitMapCRW extends TreeTraitMap {
         taxonLocations[leftChild.getNr()][1] = taxonLocations[root.getNr()][1];
         for (int i = 0; i < numSteps; i++){
             cur_angle = vm.nextDouble();
+            //System.out.println("cur_angle " + cur_angle + ", ");
             cur_angle = cur_angle%(2*Math.PI);
-            l_angle = cur_angle - l_angle;
+            l_angle = cur_angle + l_angle;
             l_angle = l_angle%(2*Math.PI);
             lat = Math.sin(l_angle)*spatialStep;
             lon = Math.cos(l_angle)*spatialStep;
             taxonLocations[leftChild.getNr()][0] = taxonLocations[leftChild.getNr()][0] + lat;
+            //System.out.println("lat " + lat +", ");
             taxonLocations[leftChild.getNr()][1] = taxonLocations[leftChild.getNr()][1] + lon;
+            //System.out.println("lon " + lon +", ");
+            //System.out.println(taxonLocations[leftChild.getNr()][0] + ", " + taxonLocations[leftChild.getNr()][1]);
         }
         //find number of steps and changes of directions on the right branch
         numSteps = (int)(rTimeElapsed/timeStep);
         double r_angle = angle;
-        cur_angle = 0.0;
+
         //find location of right child
         //set right child location initially to that of parent
         taxonLocations[rightChild.getNr()][0] = taxonLocations[root.getNr()][0];
         taxonLocations[rightChild.getNr()][1] = taxonLocations[root.getNr()][1];
         for (int i = 0; i < numSteps; i++){
             cur_angle = vm.nextDouble();
+            //System.out.println("cur_angle " + cur_angle + ", ");
             cur_angle = cur_angle%(2*Math.PI);
-            r_angle = cur_angle - r_angle;
+            r_angle = cur_angle + r_angle;
             r_angle = r_angle%(2*Math.PI);
             lat = Math.sin(r_angle)*spatialStep;
             lon = Math.cos(r_angle)*spatialStep;
             taxonLocations[rightChild.getNr()][0] = taxonLocations[rightChild.getNr()][0] + lat;
+            //System.out.println("lat " + lat +", ");
             taxonLocations[rightChild.getNr()][1] = taxonLocations[rightChild.getNr()][1] + lon;
+            //System.out.println("lon " + lon +", ");
+            //System.out.println(taxonLocations[rightChild.getNr()][0] + ", " + taxonLocations[rightChild.getNr()][1]);
         }
         if (leftChild.getChildCount() != 0){
             CRW(leftChild, l_angle);

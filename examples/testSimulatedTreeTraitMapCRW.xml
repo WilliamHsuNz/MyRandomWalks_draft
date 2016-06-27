@@ -1,16 +1,6 @@
 <beast version='2.0'
-       namespace='beast.core:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc
-           :beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel
-           :beast.evolution.likelihood:beast.evolution.alignment'>
+       namespace='beast.core:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood:beast.evolution.alignment'>
 
-    <!--data id="alignment" dataType="nucleotide">
-         <sequence taxon="t0">?</sequence>
-        <sequence taxon="t1">?</sequence>
-        <sequence taxon="t2">?</sequence>
-        <sequence taxon="t3">?</sequence>
-        <sequence taxon="t4">?</sequence>
-        <sequence taxon="t5">?</sequence>
-    </data-->
     <tree estimate="false" id="tree" spec="beast.evolution.tree.RandomTree">
         <taxonset spec="TaxonSet">
             <taxon id="t0" spec="Taxon"/>
@@ -127,14 +117,9 @@
     <!-- The simulated TreeTraitMap. -->
     <data spec="beast.app.seqgen.SimulatedTreeTraitMapCRW" id="ttm" tree='@tree' parameter='@location.location' randomizelower="-90 -180" randomizeupper="90 180"
           traitName='location' timeStep='0.01' spatialStep='0.01' k = '8.0'>
-        <!--
-            <arg spec='beast.app.seqgen.SimulatedTreeTraitMap' id="treetraitmap"
-                 tree="@tree"
-                 traitName="location">
-            </arg>
-        -->
-        <!-- The HKY substitution model (Hasegawa, Kishino & Yano, 1985)             -->
+
     </data>
+
     <run id="mcmc" spec="MCMC" chainLength="10000000">
         <state id="state" storeEvery="0">
             <parameter id="precisionMatrix.s:location" dimension="4" minordimension="2" name="stateNode">
@@ -147,7 +132,7 @@
         </state>
 
         <distribution id="posterior" spec="util.CompoundDistribution">
-            <!-- added-->
+
             <distribution id="prior" spec="util.CompoundDistribution">
 
 
@@ -158,12 +143,7 @@
                         <traitmap idref="ttm"/>
                     </arg>
                 </distribution>
-                <!--added
-                            <prior spec="" id="UCMeanRatePrior.c:location" name="distribution" x="@ucedMean.c:location">
-                                <Exponential spec="beast.math.distributions.Exponential" id="Exponential.0" name="distr">
-                                    <parameter id="RealParameter.04" estimate="false" name="mean">1.0</parameter>
-                                </Exponential>
-                            </prior>                  -->
+
             </distribution>
 
             <distribution id="likelihood" spec="util.CompoundDistribution">
@@ -213,12 +193,6 @@
                   intparameter="@expRateCategories.c:location" weight="10.0"/>
 
         <operator id="ExpCategoriesUniform.c:location" spec="UniformOperator" parameter="@expRateCategories.c:location" weight="10.0"/>
-        <!-- this will change the tree
-                    <operator id="relaxedUpDownOperatorExp.c:location" spec="UpDownOperator" scaleFactor="0.75" weight="3.0">
-                        <up idref="ucedMean.c:location"/>
-                        <down idref="Tree.t:tree"/>
-                    </operator>
-        -->
 
         <logger id="tracelog" fileName="CRWttm.$(seed).log" logEvery="20000" model="@posterior" sanitiseHeaders="true" sort="smart">
             <log idref="posterior"/>
@@ -231,7 +205,7 @@
             <log id="rateStat.location" spec="beast.evolution.branchratemodel.RateStatistic" tree="@tree" treeLikelihood="@locationtreeLikelihood.location"/>
             <log idref="rootTrait.location"/>
             <log idref="ucedMean.c:location"/>
-            <!--log id="rateStat.c:location" spec="beast.evolution.branchratemodel.RateStatistic" branchratemodel="@ExponentialRelaxedClock.c:location" tree="@tree"/-->
+
         </logger>
 
         <logger id="screenlog" logEvery="1000">
@@ -244,4 +218,5 @@
             <log id="TreeWithMetaDataLogger.t:ttm" spec="beast.evolution.tree.TreeWithMetaDataLogger" branchratemodel="@ExponentialRelaxedClock.c:location" tree="@tree"/>
         </logger>
     </run>
+
 </beast>

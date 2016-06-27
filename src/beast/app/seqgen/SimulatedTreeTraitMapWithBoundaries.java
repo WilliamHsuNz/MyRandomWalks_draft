@@ -22,21 +22,26 @@ import beast.util.XMLProducer;
 
 /**
  * Created by williamhsu on 18/03/16.
+ * This Programme extends on The TreeTraitMap Class from the beast-classic package.
+ * The programme simulates Simple Isotropic Random Walk with boundaries down a
+ * phylogenetic tree and maps geographical location traits to the nodes of the tree.
+ * The programme then performs MCMC sampliing method to infer the location of the root
+ * from the locations of the leaves.
+ *
+ * The programme can is run through the main method at beast.app.beastapp.BeastMain
+ * The programme takes examples/testSimulatedTreeTraitMapWithBoundaries.xml as input arguement
  */
 @Description("Traits containing location data generated using " +
         "simple isotropic random walk are mapped onto a given tree.")
 public class SimulatedTreeTraitMapWithBoundaries extends TreeTraitMap {
 
-    //final public Input<TreeTraitMap> m_dataInput = new Input<>("data", "trait data which specifies... ", Validate.REQUIRED);
-    //final public Input<Tree>m_treeInput = new Input<Tree>("tree", "phylogenetic beast.tree with sequence data in the leafs", Validate.REQUIRED);
     final public Input<String>m_traitNameInput = new Input<String>("traitName", "Name of trait to be map onto the tree");
     final public Input<Double>m_timeStepInput = new Input<Double>("timeStep", "time step between moves(default 0.01).", 0.01);
     final public Input<Double >m_spatialStepInput = new Input<Double>("spatialStep", "spatial step of move(default 0.01).", 0.01);
-    public Input<Double> m_maxLatBoundaryInput = new Input<Double>("maxLatBoundary", "Maximum Latitude boundary (default 20.0).",20.0);
-    public Input<Double> m_minLatBoundaryInput = new Input<Double>("minLatBoundary", "Maximum Latitude boundary (default -20.0).", -20.0);
-    public Input<Double> m_maxLonBoundaryInput = new Input<Double>("maxLonBoundary", "Maximum Longitude boundary(default 20.0).", 20.0);
-    public Input<Double> m_minLonBoundaryInput = new Input<Double>("minLonBoundary", "Minimum Longitude boundary(default -20.0).", -20.0);
-
+    public Input<Double> m_maxLatBoundaryInput = new Input<Double>("maxLatBoundary", "Maximum Latitude boundary (default 20.0).",1.0);
+    public Input<Double> m_minLatBoundaryInput = new Input<Double>("minLatBoundary", "Maximum Latitude boundary (default -20.0).", -1.0);
+    public Input<Double> m_maxLonBoundaryInput = new Input<Double>("maxLonBoundary", "Maximum Longitude boundary(default 20.0).", 1.0);
+    public Input<Double> m_minLonBoundaryInput = new Input<Double>("minLonBoundary", "Minimum Longitude boundary(default -20.0).", -1.0);
 
     TreeInterface tree;
     RealParameter rP;
@@ -70,7 +75,6 @@ public class SimulatedTreeTraitMapWithBoundaries extends TreeTraitMap {
         if (!(tree instanceof Tree))
             throw new IllegalArgumentException("Tree input must be a true Tree, not just TreeInterface.");
 
-        //makeRootLocation((Tree)tree);//this needs to be a Tree object it is currently a tree interface
         Node root = tree.getRoot();
         double [] rootLocation = {0.0, 0.0};
         taxonLocations = new double[tree.getNodeCount()][2];
@@ -91,20 +95,7 @@ public class SimulatedTreeTraitMapWithBoundaries extends TreeTraitMap {
         setInputValue("value", value);
         super.initAndValidate();
     }
-/*
-    private void makeRootLocation(Tree tree){
-        Node root = tree.getRoot();
-        System.out.println("Tree Height: " + root.getHeight());
 
-        double [] rootLocation = {0.0, 0.0};
-
-        taxonLocations = new double [tree.getNodeCount()][2];
-        taxonLocations[root.getNr()] = rootLocation;
-
-        //double angle = 0.0;
-        SRWWithBoundaries(root);
-    }
-*/
     private void SRWWithBoundaries(Node root){
         double rootHeight = root.getHeight();
         Node leftChild = root.getLeft();
@@ -116,7 +107,7 @@ public class SimulatedTreeTraitMapWithBoundaries extends TreeTraitMap {
         int numSteps = 0;
         numSteps = (int)(lTimeElapsed/timeStep);
         //find location of left child
-        double step;
+        //double step;
         double lat;
         double lon;
         double proposedLat;
@@ -127,7 +118,6 @@ public class SimulatedTreeTraitMapWithBoundaries extends TreeTraitMap {
         for (int i = 0; i < numSteps; i++){
             direction = Randomizer.nextDouble() * Math.PI;
             direction = (Randomizer.nextBoolean() == true)? direction : direction* -1;//clockwise or counter-clockwise
-            //step = l_steps[i];
             lat = Math.sin(direction)*spatialStep;
             lon = Math.cos(direction)*spatialStep;
             proposedLat = taxonLocations[leftChild.getNr()][0] + lat;
@@ -147,7 +137,6 @@ public class SimulatedTreeTraitMapWithBoundaries extends TreeTraitMap {
         //find number of steps and changes of directions on the right branch
         numSteps = (int)(rTimeElapsed/timeStep);
         //find location of right child
-        step = 0.0;
         lat = 0.0;
         lon = 0.0;
         //set right child location initially to that of parent
