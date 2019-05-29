@@ -1,7 +1,7 @@
 #MyRandomWalks
 These programs extends the TreeTraitMap class in the Beast-classic package (part of Beast2, 
 a cross platform program for phylogenetic analysis).  The programs simulate various geographical 
-population spreads including simple isotropic random walk, baised random walk, correlated random walk,
+population spreads including simple isotropic random walk, biased random walk, correlated random walk,
 random walk with boundaries and long-range dispersal.  The program then performs Bayesian inference
 using the MCMC sampling methods to estimate the location of the root of the phylogenetic tree from the 
 locations of the leaves.
